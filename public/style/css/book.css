@@ -1,0 +1,836 @@
+body{
+  overflow-x: hidden;
+}
+
+p{
+  font-size: large;
+  color: var(--red-color);
+}
+
+h2{
+  color: var(--h-color);
+
+}
+
+
+.first {
+  display: flex;
+  margin-top: 80px;
+  color:var(--red-color);
+  justify-content: space-evenly;
+
+}
+
+
+.right {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+/* book cover */
+
+.book-cover {
+  margin-right: 10%;
+  margin-left: 20px;
+}
+
+.add{
+  display: flex;
+  justify-content: center;
+}
+
+.add i {
+  margin: 30px;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+  width: 420px;
+  height: 550px;
+
+}
+
+
+#card {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  
+}
+
+
+#card img{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.tracker {
+  position: absolute;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+}
+
+.tracker:hover {
+  cursor: pointer;
+}
+
+
+.canvas {
+  perspective: 800px;
+  inset: 0;
+  z-index: 200;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "tr-1 tr-2 tr-3 tr-4 tr-5"
+    "tr-6 tr-7 tr-8 tr-9 tr-10"
+    "tr-11 tr-12 tr-13 tr-14 tr-15"
+    "tr-16 tr-17 tr-18 tr-19 tr-20"
+    "tr-21 tr-22 tr-23 tr-24 tr-25";
+}
+
+.tr-1 {
+  grid-area: tr-1;
+}
+
+.tr-2 {
+  grid-area: tr-2;
+}
+
+.tr-3 {
+  grid-area: tr-3;
+}
+
+.tr-4 {
+  grid-area: tr-4;
+}
+
+.tr-5 {
+  grid-area: tr-5;
+}
+
+.tr-6 {
+  grid-area: tr-6;
+}
+
+.tr-7 {
+  grid-area: tr-7;
+}
+
+.tr-8 {
+  grid-area: tr-8;
+}
+
+.tr-9 {
+  grid-area: tr-9;
+}
+
+.tr-10 {
+  grid-area: tr-10;
+}
+
+.tr-11 {
+  grid-area: tr-11;
+}
+
+.tr-12 {
+  grid-area: tr-12;
+}
+
+.tr-13 {
+  grid-area: tr-13;
+}
+
+.tr-14 {
+  grid-area: tr-14;
+}
+
+.tr-15 {
+  grid-area: tr-15;
+}
+
+.tr-16 {
+  grid-area: tr-16;
+}
+
+.tr-17 {
+  grid-area: tr-17;
+}
+
+.tr-18 {
+  grid-area: tr-18;
+}
+
+.tr-19 {
+  grid-area: tr-19;
+}
+
+.tr-20 {
+  grid-area: tr-20;
+}
+
+.tr-21 {
+  grid-area: tr-21;
+}
+
+.tr-22 {
+  grid-area: tr-22;
+}
+
+.tr-23 {
+  grid-area: tr-23;
+}
+
+.tr-24 {
+  grid-area: tr-24;
+}
+
+.tr-25 {
+  grid-area: tr-25;
+}
+
+.tr-1:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(20deg) rotateY(-10deg) rotateZ(0deg);
+}
+
+.tr-2:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(20deg) rotateY(-5deg) rotateZ(0deg);
+}
+
+.tr-3:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(20deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.tr-4:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(20deg) rotateY(5deg) rotateZ(0deg);
+}
+
+.tr-5:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(20deg) rotateY(10deg) rotateZ(0deg);
+}
+
+.tr-6:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(10deg) rotateY(-10deg) rotateZ(0deg);
+}
+
+.tr-7:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(10deg) rotateY(-5deg) rotateZ(0deg);
+}
+
+.tr-8:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.tr-9:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(10deg) rotateY(5deg) rotateZ(0deg);
+}
+
+.tr-10:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(10deg) rotateY(10deg) rotateZ(0deg);
+}
+
+.tr-11:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(0deg) rotateY(-10deg) rotateZ(0deg);
+}
+
+.tr-12:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(0deg) rotateY(-5deg) rotateZ(0deg);
+}
+
+.tr-13:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.tr-14:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(0deg) rotateY(5deg) rotateZ(0deg);
+}
+
+.tr-15:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(0deg) rotateY(10deg) rotateZ(0deg);
+}
+
+.tr-16:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-10deg) rotateY(-10deg) rotateZ(0deg);
+}
+
+.tr-17:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-10deg) rotateY(-5deg) rotateZ(0deg);
+}
+
+.tr-18:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-10deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.tr-19:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-10deg) rotateY(5deg) rotateZ(0deg);
+}
+
+.tr-20:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-10deg) rotateY(10deg) rotateZ(0deg);
+}
+
+.tr-21:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-20deg) rotateY(-10deg) rotateZ(0deg);
+}
+
+.tr-22:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-20deg) rotateY(-5deg) rotateZ(0deg);
+}
+
+.tr-23:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.tr-24:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-20deg) rotateY(5deg) rotateZ(0deg);
+}
+
+.tr-25:hover~#card {
+  transition: 125ms ease-in-out;
+  transform: rotateX(-20deg) rotateY(10deg) rotateZ(0deg);
+}
+
+
+
+
+/* book- information */
+
+.book-info {
+  margin-top: -20px;
+  margin-right: 10%;
+  color: var(--h-color);
+
+
+
+}
+
+.book-info p {
+  margin-top: -15px;
+  margin-left: 30px;
+}
+
+.book-info .row {
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
+
+
+.book-info .row i {
+  font-size: 22px;
+  width: 40px;
+  color: var(--red-color);
+}
+
+.book-info .rating .row{
+  display: flex;
+  align-items: center;
+}
+
+.book-info .rating .row h2 {
+  color: var(--red-color);
+} 
+
+.book-info .rating .row i {
+  font-size: 20px;
+}
+
+
+
+.book-info .rating .rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+
+
+.book-info .rating .rate:not(:checked) > input {
+  display: none;
+}
+
+.book-info .rating .rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:var(--h-color);
+}
+
+.book-info .rating .rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+
+
+.book-info .rating  .rate > input:checked ~ label {
+  color: var(--red-color);    
+}
+.book-info .rating .rate:not(:checked) > label:hover,
+.book-info .rating .rate:not(:checked) > label:hover ~ label {
+  color: var(--red-color);  
+}
+.book-info .rating .rate > input:checked + label:hover,
+.book-info .rating .rate > input:checked + label:hover ~ label,
+.book-info .rating .rate > input:checked ~ label:hover,
+.book-info .rating .rate > input:checked ~ label:hover ~ label,
+.book-info .rating .rate > label:hover ~ input:checked ~ label {
+  color: var(--red-color);
+}
+
+
+
+/* book buttons */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+
+}
+
+
+
+.btn {
+  position: relative;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all .2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--beige-color);
+  background-color: var(--red-color);
+  margin: 20px 0;
+  width: 200px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 1s;
+  background-color: var(--h-color);
+
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+
+/* book insight */
+ .insight{
+  margin: 40px 0;
+  
+ }
+
+
+
+ .insight-heading {
+  text-align:left;
+  margin-bottom: 50px;
+  position: relative;
+  margin-top: 150px;
+  margin-right: 5%;
+}
+
+.insight-heading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height:2px;
+  background: var(--red-color);
+  z-index: -1;
+
+
+}
+
+.insight-heading span {
+  font-size: 60px;
+  padding: .5rem 2rem;
+  color: var(--red-color);
+  background-color: var(--beige-color);
+
+}
+
+
+
+ .insight p {
+  font-size: x-large;
+  /* color: var(--h-color); */
+  line-height: 35px;
+  margin: 0 10%;
+
+ }
+
+
+
+
+ /* comment */
+
+
+
+
+ .heading {
+  text-align: center;
+  margin-bottom: 100px;
+  position: relative;
+  margin: 250px 5% 0 5%;
+
+}
+
+.heading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red-color);
+  z-index: -1;
+
+}
+
+.heading span {
+  font-size: 60px;
+  padding: .5rem 2rem;
+  color: var(--red-color);
+  background-color: var(--beige-color);
+
+}
+
+
+.comments {
+  background: linear-gradient(var(--beige-color),rgb(62, 21, 24 ,0.6));
+  
+}
+
+
+
+.comments .comment-container{
+  margin: 50px 13%;
+  height: 100px;
+}
+
+
+.comments .comment-container:last-child{
+  margin: 0 13%;
+
+}
+
+
+.comments .comment-container .user-date{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 1px solid var(--red-color);
+
+  
+}
+
+.comments .comment-container .user-date p{
+  margin: 0;
+  color: var(--red-color);
+  font-size: x-large;
+}
+
+
+.comments .comment-container .user-date .first-letter{
+  background: var(--red-color);
+  color: var(--beige-color);
+  border-radius: 50%;
+  font-size: x-large;
+  padding: 3px;
+  margin-right:10px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+
+}
+
+
+.comments .comment-container .user-date small{
+  color: var(--red-color);
+  position: absolute;
+  right: 13%;
+
+}
+
+
+.comments .comment-container p{
+  margin-top:20px;
+  color: var(--red-color);
+}
+
+.comments .btn-comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.add-comment {
+  position: fixed;
+  display: none;
+  bottom: 0;
+  width: 100%;
+  left: 13%;
+  bottom: 100px;
+}
+
+.add-comment .card {
+  width: 68.5%;
+  height: 150px;
+  padding: 50px;
+  cursor: pointer;
+  border-radius: 20px;
+  background: rgba(139, 78, 57,0.9);
+  position: relative;
+}
+
+.add-comment .card .card__content{
+  width: 100%;
+  height: 100px;
+  background: none;
+  border: none;
+  font-size: x-large;
+  color: var(--beige-color);
+  outline: none;
+  resize: none;
+
+}
+
+
+
+
+
+.add-comment .card .card__content::placeholder{
+  color: var(--red-color);
+  font-size: xx-large;
+}
+
+
+
+.add-comment  .card .card__date {
+  color: var(--beige-color);
+  font-size: 0.8rem;
+}
+
+
+
+.add-comment .card .card__arrow,
+.add-comment .card .close-mark {
+  position: absolute;
+  padding: 0.4rem;
+  transition: 0.5s;
+  color: var(--beige-color);
+  right: 0;
+  background: none;
+  border-style: none;
+
+}
+
+.add-comment .card .card__arrow {
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  bottom: 0;
+
+
+}
+
+
+.add-comment .card .close-mark {
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  top: 0;
+}
+
+
+
+.add-comment .card:hover .card__arrow ,
+.add-comment .card:hover .close-mark {
+  background: var(--red-color);
+}
+
+.add-comment .card .card__arrow:hover,
+.add-comment .card .close-mark:hover{
+  background:var(--beige-color);
+  color: var(--red-color);
+}
+
+.add-comment .card .card__arrow:hover i {
+  transform: translateX(4px);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width:768px ) and (max-width:1055px){
+  .first{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+  }
+  
+  
+
+
+  .book-info{
+    margin-bottom: 100px;
+
+  }
+
+
+  
+
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 10%;    
+
+  }
+
+  .buttons .btn{
+    margin: 0 5%;
+    width: 200px;
+  }
+
+} 
+
+
+
+
+
+
+
+
+
+
+@media (max-width:768px ){
+  
+  .first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .right{
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+
+  .book-cover {
+    margin: 0;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+
+  .book-info {
+    margin-left: 30%;
+    margin-bottom: 100px;
+
+  }
+
+  .comments .btn-comment {
+    margin-bottom: 35px;
+  }
+
+  .add-comment{
+    left: 11%;
+  }
+
+  .add-comment .card{
+    width: 63%;
+  }
+
+
+
+  
+}
