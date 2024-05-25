@@ -297,4 +297,5 @@ input:checked+.slider:before {
     color: var(--red-color);
     font-weight: 900;
     font-size: 15px;
+    margin-bottom: 0
 }

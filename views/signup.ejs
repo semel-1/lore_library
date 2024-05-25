@@ -12,7 +12,7 @@
 
     <body id="particles-js">
         <div class="contener">
-            <form action="/signup" method="post" class="box">
+            <form action="/auth/signup" method="post" class="box">
                 <div class="icon_mood">
                     <label class="switch">
                         <input type="checkbox">
@@ -25,6 +25,9 @@
 
                     <!-- طباعة الخطأ -->
                     <div class="alert">
+                        <p class="errorMessage">
+                            <%= errorMessage %>
+                        </p>
 
                     </div>
 
@@ -105,11 +108,6 @@
                         </label>
                         <i></i>
                     </div>
-
-                    <!-- error message -->
-                    <p class="errorMessage">
-                        <!--  -->
-                    </p>
 
                     <div class="links">
                         <a href="#">forget your password</a>
