@@ -106,7 +106,7 @@ input:checked+.slider:before {
 .box {
     position: relative;
     width: 380px;
-    height: 85%;
+    height: 82%;
     background: var(--beige-color);
     border-radius: 8px;
     overflow: hidden;
@@ -118,7 +118,7 @@ input:checked+.slider:before {
     top: -50%;
     left: -50%;
     width: 380px;
-    height: 85%;
+    height: 82%;
     background: linear-gradient(0deg, transparent, var(--red-color), var(--red-color));
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
@@ -131,7 +131,7 @@ input:checked+.slider:before {
     top: -50%;
     left: -50%;
     width: 380px;
-    height: 85%;
+    height: 82%;
     background: linear-gradient(0deg, transparent, var(--red-color), var(--red-color));
     transform-origin: bottom right;
     animation: animate 6s linear infinite;

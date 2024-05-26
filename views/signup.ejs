@@ -24,12 +24,13 @@
                     <h2>Sign up</h2>
 
                     <!-- طباعة الخطأ -->
+                    <% if (errorMessage.length > 0){ %>
                     <div class="alert">
                         <p class="errorMessage">
                             <%= errorMessage %>
                         </p>
-
                     </div>
+                    <% } %>
 
                     <div class="inputBox">
                         <input type="text" name="firstName" required

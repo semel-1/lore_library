@@ -1,9 +1,8 @@
 const express = require("express");
-const mongodb = require("../connection/db-config");
 const User = require("../connection/db-config").User;
 
 exports.signup = (req, res) => {
-  let errorMessage = ""; // Declare errorMessage using let instead of const
+  let errorMessage = "";
 
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
