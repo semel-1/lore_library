@@ -29,4 +29,8 @@ router.get("/home", (req, res) => {
   }
 });
 
+router.get("/book", (req, res) => {
+  res.render("book");
+});
+
 module.exports = router;

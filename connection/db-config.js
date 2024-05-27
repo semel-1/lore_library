@@ -13,4 +13,16 @@ const userSchema = {
 };
 
 var User = mongoose.model("User", userSchema);
-module.exports = { User };
+
+const bookSchema = {
+  title: String,
+  authorName: String,
+  category: String,
+  pageNumber: Number,
+  Language: String,
+  numberOfDownload: Number,
+};
+
+var Book = mongoose.model("Book", bookSchema);
+
+module.exports = { User, Book };
