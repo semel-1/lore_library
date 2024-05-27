@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../connection/db-config").User;
+const Book = require("../connection/db-config").Book;
 
 const router = express.Router();
 
@@ -29,8 +29,17 @@ router.get("/home", (req, res) => {
   }
 });
 
-router.get("/book", (req, res) => {
-  res.render("book");
+router.get("/book/:id", async function (req, res) {
+  try {
+    // Use the Mongoose model to query MongoDB for book data
+    const book = await Book.findById(req.params.id);
+    const img = Buffer.from(book.img.data).toString("base64");
+
+    // Render the 'book' view and pass it the book data
+    res.render("book", { book: book, img: img });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
