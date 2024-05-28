@@ -42,4 +42,14 @@ router.get("/book/:id", async function (req, res) {
   }
 });
 
+router.get("/book/:id/download", async function (req, res) {
+  try {
+    const book = await Book.findById(req.params.id);
+    res.contentType(book.file.contentType);
+    res.send(book.file.data);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
