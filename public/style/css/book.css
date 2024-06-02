@@ -9,31 +9,17 @@ p {
 
 h2 {
   color: var(--h-color);
-
 }
-
 
 .first {
   display: flex;
   margin-top: 80px;
   color: var(--red-color);
-  justify-content: space-evenly;
-
-}
-
-
-.right {
-  display: flex;
-  flex-direction: row;
-  width: 60%;
+  margin-left: 10%;
 }
 
 /* book cover */
 
-.book-cover {
-  margin-right: 10%;
-  margin-left: 20px;
-}
 
 .add {
   display: flex;
@@ -50,9 +36,7 @@ h2 {
   position: relative;
   width: 420px;
   height: 550px;
-
 }
-
 
 #card {
   position: absolute;
@@ -62,9 +46,7 @@ h2 {
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-
 }
-
 
 #card img {
   width: 100%;
@@ -82,7 +64,6 @@ h2 {
 .tracker:hover {
   cursor: pointer;
 }
-
 
 .canvas {
   perspective: 800px;
@@ -326,22 +307,30 @@ h2 {
 }
 
 
-
-
-/* book- information */
-
-.book-info {
-  margin-top: -20px;
-  margin-right: 10%;
-  color: var(--h-color);
-
-
+.right {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
 
 }
 
+
+/* book- information */
+.book-info {
+  color: var(--h-color);
+}
+
+.book-info h2 {
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
 .book-info p {
-  margin-top: -15px;
-  margin-left: 30px;
+  margin-top: 0px;
+  margin-left: 40px;
+  font-size: 25px;
+
 }
 
 .book-info .row {
@@ -350,40 +339,45 @@ h2 {
   align-items: center;
 }
 
-
 .book-info .row i {
   font-size: 22px;
   width: 40px;
   color: var(--red-color);
 }
 
-.book-info .rating .row {
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.rating .row {
   display: flex;
   align-items: center;
 }
 
-.book-info .rating .row h2 {
+.rating .row h2 {
   color: var(--red-color);
+  font-size: 30px;
+  margin: 0;
 }
 
-.book-info .rating .row i {
+.rating .row i {
   font-size: 20px;
 }
 
-
-
-.book-info .rating .rate {
+.rating .rate {
   float: left;
   height: 46px;
   padding: 0 10px;
 }
 
-
-.book-info .rating .rate:not(:checked)>input {
+.rating .rate:not(:checked)>input {
   display: none;
 }
 
-.book-info .rating .rate:not(:checked)>label {
+.rating .rate:not(:checked)>label {
   float: right;
   width: 1em;
   overflow: hidden;
@@ -393,42 +387,35 @@ h2 {
   color: var(--h-color);
 }
 
-.book-info .rating .rate:not(:checked)>label:before {
+.rating .rate:not(:checked)>label:before {
   content: '★ ';
 }
 
-
-
-.book-info .rating .rate>input:checked~label {
+.rating .rate>input:checked~label {
   color: var(--red-color);
 }
 
-.book-info .rating .rate:not(:checked)>label:hover,
-.book-info .rating .rate:not(:checked)>label:hover~label {
+.rating .rate:not(:checked)>label:hover,
+.rating .rate:not(:checked)>label:hover~label {
   color: var(--red-color);
 }
 
-.book-info .rating .rate>input:checked+label:hover,
-.book-info .rating .rate>input:checked+label:hover~label,
-.book-info .rating .rate>input:checked~label:hover,
-.book-info .rating .rate>input:checked~label:hover~label,
-.book-info .rating .rate>label:hover~input:checked~label {
+.rating .rate>input:checked+label:hover,
+.rating .rate>input:checked+label:hover~label,
+.rating .rate>input:checked~label:hover,
+.rating .rate>input:checked~label:hover~label,
+.rating .rate>label:hover~input:checked~label {
   color: var(--red-color);
 }
-
-
 
 /* book buttons */
-
 .buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 20px;
-
+  align-items: center;
+  margin-right: 10%;
 }
-
-
 
 .btn {
   position: relative;
@@ -472,7 +459,6 @@ h2 {
   z-index: -1;
   transition: all 1s;
   background-color: var(--h-color);
-
 }
 
 .btn:hover::after {
@@ -480,14 +466,10 @@ h2 {
   opacity: 0;
 }
 
-
 /* book insight */
 .insight {
   margin: 40px 0;
-
 }
-
-
 
 .insight-heading {
   text-align: left;
@@ -506,8 +488,6 @@ h2 {
   height: 2px;
   background: var(--red-color);
   z-index: -1;
-
-
 }
 
 .insight-heading span {
@@ -515,27 +495,15 @@ h2 {
   padding: .5rem 2rem;
   color: var(--red-color);
   background-color: var(--beige-color);
-
 }
-
-
 
 .insight p {
   font-size: x-large;
-  /* color: var(--h-color); */
   line-height: 35px;
   margin: 0 10%;
-
 }
 
-
-
-
 /* comment */
-
-
-
-
 .heading {
   text-align: center;
   margin-bottom: 100px;
@@ -553,7 +521,6 @@ h2 {
   height: 2px;
   background: var(--red-color);
   z-index: -1;
-
 }
 
 .heading span {
@@ -561,36 +528,26 @@ h2 {
   padding: .5rem 2rem;
   color: var(--red-color);
   background-color: var(--beige-color);
-
 }
-
 
 .comments {
   background: linear-gradient(var(--beige-color), rgb(62, 21, 24, 0.6));
-
 }
-
-
 
 .comments .comment-container {
   margin: 50px 13%;
   height: 100px;
 }
 
-
 .comments .comment-container:last-child {
   margin: 0 13%;
-
 }
-
 
 .comments .comment-container .user-date {
   display: flex;
   align-items: center;
   flex-direction: row;
   border-bottom: 1px solid var(--red-color);
-
-
 }
 
 .comments .comment-container .user-date p {
@@ -598,7 +555,6 @@ h2 {
   color: var(--red-color);
   font-size: x-large;
 }
-
 
 .comments .comment-container .user-date .first-letter {
   background: var(--red-color);
@@ -610,17 +566,13 @@ h2 {
   text-align: center;
   width: 30px;
   height: 30px;
-
 }
-
 
 .comments .comment-container .user-date small {
   color: var(--red-color);
   position: absolute;
   right: 13%;
-
 }
-
 
 .comments .comment-container p {
   margin-top: 20px;
@@ -632,8 +584,6 @@ h2 {
   align-items: center;
   justify-content: center;
 }
-
-
 
 .add-comment {
   position: fixed;
@@ -663,26 +613,17 @@ h2 {
   color: var(--beige-color);
   outline: none;
   resize: none;
-
 }
-
-
-
-
 
 .add-comment .card .card__content::placeholder {
   color: var(--red-color);
   font-size: xx-large;
 }
 
-
-
 .add-comment .card .card__date {
   color: var(--beige-color);
   font-size: 0.8rem;
 }
-
-
 
 .add-comment .card .card__arrow,
 .add-comment .card .close-mark {
@@ -693,25 +634,19 @@ h2 {
   right: 0;
   background: none;
   border-style: none;
-
 }
 
 .add-comment .card .card__arrow {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
   bottom: 0;
-
-
 }
-
 
 .add-comment .card .close-mark {
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   top: 0;
 }
-
-
 
 .add-comment .card:hover .card__arrow,
 .add-comment .card:hover .close-mark {
@@ -726,85 +661,49 @@ h2 {
 
 .add-comment .card .card__arrow:hover i {
   transform: translateX(4px);
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*  */
 @media (min-width:768px) and (max-width:1055px) {
   .first {
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .right {
+  .left {
     display: flex;
     width: 100%;
     justify-content: center;
-
   }
-
-
-
 
   .book-info {
     margin-bottom: 100px;
-
   }
-
-
-
 
   .buttons {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
     margin-left: 10%;
-
   }
 
   .buttons .btn {
-    margin: 0 5%;
+    /* margin: 0 5%; */
     width: 200px;
   }
-
 }
 
-
-
-
-
-
-
-
-
-
 @media (max-width:768px) {
-
   .first {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .right {
+  .left {
     display: flex;
     flex-direction: column;
   }
-
-
 
   .book-cover {
     margin: 0;
@@ -814,11 +713,18 @@ h2 {
     flex-direction: column;
   }
 
+  .right {
+    flex-direction: column;
+  }
 
   .book-info {
     margin-left: 30%;
     margin-bottom: 100px;
+  }
 
+  .buttons {
+    flex-direction: row;
+    gap: 5%;
   }
 
   .comments .btn-comment {
@@ -832,8 +738,4 @@ h2 {
   .add-comment .card {
     width: 63%;
   }
-
-
-
-
 }

@@ -3,11 +3,12 @@ const Book = require("../connection/db-config").Book;
 const bookController = require("../controllers/book");
 
 const router = express.Router();
-lettitle = "";
+
 let errorMessage = "";
+let pageName = "";
 
 router.get("/", (req, res) => {
-  res.render("index", {});
+  res.render("index");
 });
 
 router.get("/signup", (req, res) => {
@@ -19,22 +20,22 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/home", (req, res) => {
-  title = "home";
-  const foundUser = req.user;
+  const foundUser = req.user; // Assuming you have middleware that sets req.user after successful login
 
   if (foundUser) {
+    pageName = "home"
     // User is logged in, render home page with user's first name
-    res.render("home", { foundUser, title });
+    res.render("home", { foundUser,pageName });
   } else {
     // User is not logged in, display "Student"
-    res.render("home", { foundUser: "student", title });
+    res.render("home", { foundUser: "student",pageName:"home" });
   }
 });
 
 router.get("/book/:id", bookController.show);
 
-router.get("/book/:id/read", bookController.read);
-
 router.get("/book/:id/download", bookController.download);
+
+router.get("/book/:id/read", bookController.read);
 
 module.exports = router;
