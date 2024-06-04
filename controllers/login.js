@@ -11,8 +11,9 @@ exports.login = (req, res) => {
         const errorMessage = "Email or Password is incorrect";
         res.render("login", { errorMessage: errorMessage });
       } else {
-        // User found, redirect to home page
-        res.render("home", { foundUser });
+        // User found, save user in session and redirect to home page
+        req.session.user = foundUser;
+        res.redirect("/home");
       }
     })
     .catch((err) => {

@@ -164,19 +164,24 @@
 
             <div class="comments">
 
-                <div class="comment-container">
-                    <div class="user-date">
-                        <div class="first-letter">U</div><p> User Name :</p>
-                        <small>august 6, 2023</small>
+                <% comments.forEach(comment => { %>
+                    <div class="comment-container">
+                        <div class="user-date">
+                            <div class="first-letter">
+                                <p>
+                                    <%= comment.user.firstName.charAt(0) %>
+                                </p>
+                              
+                            </div>
+                            <p> <%= comment.user.firstName %> <%= comment.user.lastName %></p>
+                            <small><%= comment.formattedDate %></small>
+                        </div>
+                        <p><%= comment.text %></p>
+    
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Facilis veniam harum quibusdam quas aperiam
-                        error iste suscipit aliquam eveniet nulla magnam
-                        voluptates beatae dicta, quos recusandae facere!
-                        Incidunt, dolore quisquam.</p>
-
-                </div>
-
+    
+                <% }) %>
+               
                 <div class="btn-comment">
                     <button class="btn" id="show"> Add COmment</button>
                 </div>

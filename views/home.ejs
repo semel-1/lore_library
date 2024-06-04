@@ -1,4 +1,4 @@
-    <%- include('./partials/header') %>
+<%- include('./partials/header') %>
         <!-- home -->
 
         <section class="home" id="home" style="margin-bottom: 200px;">
@@ -30,38 +30,24 @@
                 <div class="swiper books-slider">
                     <div class="swiper-wrapper">
 
-                        <!-- 1 -->
-                        <a href="#" class="swiper-slide">
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img
-                                            src="../style/../style/img/image.jpg"
-                                            alt>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="title">BACK</p>
-                                        <p>author name</p>
+
+                        <% book.forEach(oneBook => { %>
+                            <a href="#" class="swiper-slide">
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <p class="title"><%= oneBook.title %></p>
+                                            <p><%= oneBook.authorName %></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-
-                        <!-- 2 -->
-                        <a href="#" class="swiper-slide">
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img src="../style/img/image-2.jpg" alt>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="title">book titl</p>
-                                        <p>author name</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
+                            </a>
+    
+                        <% }) %>
+                        
                     </div>
                     <div class="the-stand">
                         <div class="stand-top"></div>

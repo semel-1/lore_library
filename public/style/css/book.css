@@ -3,7 +3,7 @@ body {
 }
 
 p {
-  font-size: large;
+  font-size: 25px;
   color: var(--red-color);
 }
 
@@ -558,20 +558,30 @@ h2 {
 
 .comments .comment-container .user-date .first-letter {
   background: var(--red-color);
-  color: var(--beige-color);
   border-radius: 50%;
-  font-size: x-large;
   padding: 3px;
   margin-right: 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
 }
+
+.comments .comment-container .user-date .first-letter p {
+  font-size: 30px;
+  color: var(--beige-color);
+  margin-bottom: 4px;
+
+
+}
+
 
 .comments .comment-container .user-date small {
   color: var(--red-color);
   position: absolute;
   right: 13%;
+  font-size: 20px;
 }
 
 .comments .comment-container p {
