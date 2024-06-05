@@ -4,7 +4,7 @@ const Comment = require("../connection/db-config").Comment;
 
 exports.show = async (req, res) => {
   try {
-    const foundUser = req.user;
+    const foundUser = req.session.user; 
     const book = await Book.findById(req.params.id);
     const img = Buffer.from(book.img.data).toString("base64");
     const comments = await Comment.find({ book: req.params.id }).populate("user");
@@ -45,12 +45,19 @@ exports.read = async (req, res) => {
 
 
 exports.addComment = (req,res)=>{  
+  const comment = req.body.comment;
+  const book = req.body.book;
+  const user = req.session.user;
+
+  if (!user || !user._id) {
+    return res.status(401).json({ error: 'User not logged in or user ID missing.' });
+  }
+  // console.log(req.params);
 const newComment = new Comment({
-  book: "665611f31e992fd0974f202a",  // replace with the actual book id
-  user: "6657b004baebb0a784ffaebb",  // replace with the actual user id
-  text: "This is a comment"
+  book:book,
+  user: user._id,  
+  text: comment
 });
-
-// newComment.save();
-
+newComment.save();
+res.redirect("/book/"+book)
 }

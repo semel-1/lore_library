@@ -191,14 +191,14 @@
         </section>
 
         <section class="add-comment">
-            <form action>
+            <form action="/auth/addComment" method="post">
                 <div class="card">
-
+                    <input type="hidden" name="book" value="<%= book._id %>">
                     <textarea class="card__content" name="comment"
                         placeholder="add a comment..."></textarea>
 
                     <div class="card__date">
-                        April 15, 2022
+                        <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %>
                     </div>
 
                     <button class="card__arrow" type="submit">

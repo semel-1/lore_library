@@ -619,7 +619,7 @@ h2 {
   height: 100px;
   background: none;
   border: none;
-  font-size: x-large;
+  font-size: 1.5rem;
   color: var(--beige-color);
   outline: none;
   resize: none;
@@ -627,12 +627,12 @@ h2 {
 
 .add-comment .card .card__content::placeholder {
   color: var(--red-color);
-  font-size: xx-large;
+  font-size: 1.5rem;
 }
 
 .add-comment .card .card__date {
   color: var(--beige-color);
-  font-size: 0.8rem;
+  font-size: 1.2rem;
 }
 
 .add-comment .card .card__arrow,

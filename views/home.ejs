@@ -32,7 +32,7 @@
 
 
                         <% book.forEach(oneBook => { %>
-                            <a href="#" class="swiper-slide">
+                            <a href="/book/<%= oneBook._id %>" class="swiper-slide">
                                 <div class="flip-card">
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="flip-card-back">
                                             <p class="title"><%= oneBook.title %></p>
-                                            <p><%= oneBook.authorName %></p>
+                                            <p> <%= oneBook.authorName %></p>
                                         </div>
                                     </div>
                                 </div>
