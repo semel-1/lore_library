@@ -29,25 +29,22 @@
 
                 <div class="swiper books-slider">
                     <div class="swiper-wrapper">
-
-
-                        <% book.forEach(oneBook => { %>
+                        <% books.forEach(oneBook => { %>
                             <a href="/book/<%= oneBook._id %>" class="swiper-slide">
-                                <div class="flip-card">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <p class="title"><%= oneBook.title %></p>
-                                            <p> <%= oneBook.authorName %></p>
-                                        </div>
-                                    </div>
+                              <div class="flip-card">
+                                <div class="flip-card-inner">
+                                  <div class="flip-card-front">
+                                    <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
+                                  </div>
+                                  <div class="flip-card-back">
+                                    <p class="title"><%= oneBook.title %></p>
+                                    <p><%= oneBook.authorName %></p>
+                                  </div>
                                 </div>
+                              </div>
                             </a>
-    
-                        <% }) %>
-                        
+                          <% }) %>
+                                                  
                     </div>
                     <div class="the-stand">
                         <div class="stand-top"></div>

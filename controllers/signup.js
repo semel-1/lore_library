@@ -1,45 +1,48 @@
-const express = require("express");
 const User = require("../connection/db-config").User;
 
-exports.signup = (req, res) => {
-  let errorMessage = "";
+exports.signup = async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      password
+    } = req.body;
+    let errorMessage = "";
 
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const email = req.body.email;
-  const phone = req.body.phone;
-  const password = req.body.password;
-
-  const newUser = new User({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    password: password,
-  });
-
-  User.findOne({ $or: [{ email: email }, { phone: phone }] })
-    .then((foundUser) => {
-      if (foundUser) {
-        if (foundUser.email === email) {
-          errorMessage = "Email already exist";
-        } else if (foundUser.phone === phone) {
-          errorMessage = "Phone already exists";
-        }
-        res.render("signup", { errorMessage: errorMessage });
-      } else {
-        newUser
-          .save()
-          .then(() => {
-            console.log("Successfully inserted one user");
-            res.redirect("/login");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
+    const foundUser = await User.findOne({
+      $or: [{
+        email: email
+      }, {
+        phone: phone
+      }]
     });
+
+    if (foundUser) {
+      if (foundUser.email === email) {
+        errorMessage = "Email already exists";
+      } else if (foundUser.phone === phone) {
+        errorMessage = "Phone already exists";
+      }
+      return res.render("signup", {
+        errorMessage
+      });
+    }
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+    });
+
+    await newUser.save();
+    console.log("Successfully inserted one user");
+    return res.redirect("/login");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Internal Server Error");
+  }
 };
