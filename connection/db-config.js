@@ -15,7 +15,16 @@ const userSchema = new mongoose.Schema({
   email: String,
   phone: String,
   password: String,
+  favoriteBooks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }],
+  readLaterBooks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }]
 });
+
 
 var User = mongoose.model("User", userSchema);
 
@@ -104,16 +113,11 @@ const ratingSchema = new mongoose.Schema({
 var Rating = mongoose.model("Rating", ratingSchema);
 
 
-// const newRating = new Rating({
-//   book: "665611f31e992fd0974f202a",
-//   user: "6660aca0d48e9952dac6d7c0",
-//   review: 3
-// });
-// newRating.save();
 
 module.exports = {
   User,
   Book,
   Comment,
-  Rating
+  Rating,
+
 };

@@ -1,7 +1,9 @@
+const mongoose = require("mongoose")
 const {
   Book,
+  User,
   Comment,
-  Rating
+  Rating,
 } = require("../connection/db-config");
 
 exports.show = async (req, res) => {
@@ -43,6 +45,7 @@ exports.show = async (req, res) => {
     }));
 
     res.render("book", {
+      foundUser,
       averageReview,
       book,
       img,
@@ -134,7 +137,6 @@ exports.addComment = async (req, res) => {
 
 
 exports.rating = (req, res) => {
-  console.log("rating");
   const rate = req.body.rate;
   const book = req.body.book;
   const user = req.session.user;
@@ -154,3 +156,80 @@ exports.rating = (req, res) => {
     console.log(err);
   });
 }
+
+exports.favorite = async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const bookId = req.params.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found"
+      });
+    }
+
+    const book = await Book.findById(bookId);
+    if (!book) {
+      return res.status(404).json({
+        error: "Book not found"
+      });
+    }
+
+    const isFavorite = user.favoriteBooks.some(book => book && book.toString() === bookId.toString());
+    if (isFavorite) {
+      user.favoriteBooks.pull(bookId);
+    } else {
+      user.favoriteBooks.push(bookId);
+    }
+
+    await user.save();
+    res.status(200).json({
+      favorite: !isFavorite
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: "Internal server error"
+    });
+  }
+};
+
+
+exports.readLater = async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const bookId = req.params.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found"
+      });
+    }
+
+    const book = await Book.findById(bookId);
+    if (!book) {
+      return res.status(404).json({
+        error: "Book not found"
+      });
+    }
+
+    const isReadLater = user.readLaterBooks.some(book => book && book.toString() === bookId.toString());
+    if (isReadLater) {
+      user.readLaterBooks.pull(bookId);
+    } else {
+      user.readLaterBooks.push(bookId);
+    }
+
+    await user.save();
+    res.status(200).json({
+      readLater: !isReadLater
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: "Internal server error"
+    });
+  }
+};

@@ -1,60 +1,50 @@
-html{
+html {
     overflow-x: hidden;
-
 }
-body{
+
+body {
     width: 100vw;
     height: 100%;
     padding: 0;
 }
 
-
-
 .insight-heading {
-    text-align:left;
+    text-align: left;
     margin-bottom: 50px;
     position: relative;
     margin-top: 50px;
     margin-right: 9%;
-    margin-left: 7%;   
-  }
-  
-  .insight-heading::before {
+    margin-left: 7%;
+}
+
+.insight-heading::after {
     content: '';
     position: absolute;
     top: 50%;
-    margin-left: 17%;
-    width: 80%;
-    height:2px;
+    width: 60%;
+    height: 2px;
     background: var(--red-color);
     z-index: -1;
-    
-  
-  
-  }
-  
-  .insight-heading span {
-    font-size: 60px;
+}
+
+.insight-heading span {
+    font-size: 50px;
     padding: .5rem 2rem;
     color: var(--red-color);
-    
-  
-  }
-  
-
+}
 
 .category {
     display: grid;
     grid-template-columns: 180px 180px 180px 180px 180px;
     justify-content: center;
     gap: 5%;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
-
-
-
+.category a {
+    text-decoration: none;
+}
 
 .book {
     position: relative;
@@ -92,8 +82,6 @@ body{
     transform: rotatey(-80deg);
 }
 
-
-
 .book .cover img {
     width: 100%;
     height: 100%;
@@ -102,44 +90,37 @@ body{
 
 
 
-@media (min-width:960px) and (max-width:1222px){
+@media (min-width:960px) and (max-width:1222px) {
     .insight-heading::before {
-        margin-left:25% ;
+        margin-left: 25%;
     }
 
-    .category{     
+    .category {
         grid-template-columns: 180px 180px 180px 180px;
     }
-
-    
 }
-
-
-
 
 
 @media (min-width:768px) and (max-width:960px) {
     .insight-heading::before {
-        margin-left:29% ;
+        margin-left: 29%;
         width: 65%;
     }
 
-   
-    .category{
+    .category {
         grid-template-columns: 180px 180px 180px;
     }
-    
 }
 
 
-@media (max-width:768px){
+@media (max-width:768px) {
 
     .insight-heading::before {
-        margin-left:37% ;
+        margin-left: 37%;
         width: 50%;
     }
 
-    .category{
+    .category {
         grid-template-columns: 180px 180px;
     }
 }

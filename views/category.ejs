@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+        <h1 class="insight-heading">
+            <span><%= pageTitle %>:</span>
+        </h1>
+        <section class="category">
+            <% if (books && books.length > 0) { %> <!-- Ensure books is defined -->
+            <% books.forEach(book => { %>
+                <a href="/book/<%= book._id %>">
+                    <div class="book">
+                        <p>
+                            <strong>Title:</strong>
+                            <br>
+                             <%= book.title %><br>
+                            <strong>Author Name:</strong>
+                            <br>
+                             <%= book.authorName %>
+                        </p>
+                        <div class="cover">
+                            <img
+                                src="data:<%= book.img.contentType %>;base64,<%= book.img.data.toString('base64') %>"
+                                alt="<%= book.title %>">
+                        </div>
+                    </div>
+                    <% }) %>
+                 
+                </a>
+                <% } else { %>
+                    <p>You have no books in this category.</p>
+                    <% } %>
+
+        </section>
+        
+
+    </body>
+</html>
