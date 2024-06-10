@@ -1,379 +1,349 @@
 <%- include('./partials/header') %>
-        <!-- home -->
+    <!-- home -->
 
-        <section class="home" id="home" style="margin-bottom: 200px;">
+    <section class="home" id="home" style="margin-bottom: 200px;">
 
-            <div class="row">
-                <div class="content">
-                    <h3>
+        <div class="row">
+            <div class="content">
+                <h3>
 
-                        Welcome<br>
-                        <%= foundUser.firstName || foundUser %>
+                    Welcome<br>
+                    <%= foundUser.firstName || foundUser %>
                         <br>to our library
 
-                    </h3>
+                </h3>
 
+                <p>
+                    where you can find everything you are looking for
+                    <br>
+                    from author biography to his/her complete works
+                    <br>
+                    we hope you enjoy your visit
+                </p>
+                <button data-text="Awesome" class="button">
+                    <span class="actual-text">&nbsp;more&nbsp;</span>
+                    <span class="hover-text" aria-hidden="true">&nbsp;more&nbsp;</span>
+                </button>
+            </div>
+
+            <div class="swiper books-slider">
+                <div class="swiper-wrapper">
+                    <% books.forEach(oneBook=> { %>
+                        <a href="/book/<%= oneBook._id %>" class="swiper-slide">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p class="title">
+                                            <%= oneBook.title %>
+                                        </p>
+                                        <p>
+                                            <%= oneBook.authorName %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <% }) %>
+
+                </div>
+                <div class="the-stand">
+                    <div class="stand-top"></div>
+                    <div class="stand"></div>
+                    <div class="stand-bottom"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- icons -->
+    <section class="services" id="services" style="margin-bottom: 100px;">
+        <h1 class="heading">
+            <span>Services</span>
+        </h1>
+        <div class="icons-container">
+            <div class="icons">
+                <i class="bi bi-currency-dollar"></i>
+                <div class="content">
+                    <h3>Free</h3>
+                    <p>download or read for free</p>
+                </div>
+            </div>
+
+            <div class="icons">
+                <i class="bi bi-lock-fill"></i>
+                <div class="content">
+                    <h3>Web Security</h3>
+                    <p>save personal information </p>
+                </div>
+            </div>
+
+            <div class="icons">
+                <i class="bi bi-chat-dots-fill"></i>
+                <div class="content">
+                    <h3>Comments</h3>
+                    <p>add comments to books </p>
+                </div>
+            </div>
+
+            <div class="icons">
+                <i class="bi bi-headset"></i>
+                <div class="content">
+                    <h3>24/7 support</h3>
+                    <p>Call us anytime</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- category -->
+
+    <section class="categories" id="categories" style="padding:0 50px;">
+        <h1 class="heading">
+            <span>Categories</span>
+        </h1>
+
+
+        <% for (const category in booksByCategory) { %>
+            <div class="category">
+                <div class="category-type">
                     <p>
-                        where you can find everything you are looking for
-                        <br>
-                        from author biography to his/her complete works
-                        <br>
-                        we hope you enjoy your visit
+                        <%= category %>
                     </p>
-                    <button data-text="Awesome" class="button">
-                        <span class="actual-text">&nbsp;more&nbsp;</span>
-                        <span class="hover-text"
-                            aria-hidden="true">&nbsp;more&nbsp;</span>
+                    <a href="/category/<%= category %>">see more >></a>
+                </div>
+
+                <div class="swiper categories-slider">
+                    <div class="swiper-wrapper">
+                        <% booksByCategory[category].forEach(book=> { %>
+                            <a href="/book/<%= book._id %>" class="swiper-slide">
+                                <div class="book">
+                                    <p>
+                                        <strong>Title:</strong>
+                                        <br>
+                                        <%= book.title %>
+                                            <br>
+                                            <strong>Author Name:</strong>
+                                            <br>
+                                            <%= book.authorName %>
+                                    </p>
+                                    <div class="cover">
+                                        <img src="data:<%= book.img.contentType %>;base64,<%= book.img.data.toString('base64') %>"
+                                            alt="<%= book.title %>">
+                                    </div>
+                                </div>
+                            </a>
+                            <% }) %>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <% } %>
+
+
+
+    </section>
+
+    <!-- admin setion -->
+    <section id="admin">
+
+        <h1 class="heading">
+            <span>Admins</span>
+        </h1>
+        <div class="admin">
+            <div class="card-client">
+                <div class="user-picture">
+                    <img src="../style/img/3.jpg" alt>
+                </div>
+                <p class="name-client"> Jhon Doe
+                    <span>CEO of WritBook
+                    </span>
+                </p>
+                <div class="social-media">
+
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                        <span class="tooltip-social">Twitter</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="tooltip-social">Instagram</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span class="tooltip-social">Facebook</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <span class="tooltip-social">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-client">
+                <div class="user-picture">
+                    <img src="../style/img/2.jpg" alt>
+                </div>
+                <p class="name-client"> Jhon Doe
+                    <span>CEO of WritBook
+                    </span>
+                </p>
+                <div class="social-media">
+
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                        <span class="tooltip-social">Twitter</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="tooltip-social">Instagram</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span class="tooltip-social">Facebook</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <span class="tooltip-social">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-client">
+                <div class="user-picture">
+                    <img src="../style/img/1.jpg" alt>
+                </div>
+                <p class="name-client"> Jhon Doe
+                    <span>CEO of WritBook
+                    </span>
+                </p>
+                <div class="social-media">
+
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                        <span class="tooltip-social">Twitter</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="tooltip-social">Instagram</span>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span class="tooltip-social">Facebook</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <span class="tooltip-social">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer id="contact">
+
+        <div class="contact-bg" id="show-info">
+            <div class="footer-info">
+
+                <div class="btn">
+                    <button class="cta" type="submit">
+                        <span>Contact Us</span>
+                        <svg viewBox="0 0 13 10" height="10px" width="15px">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
                     </button>
                 </div>
 
-                <div class="swiper books-slider">
-                    <div class="swiper-wrapper">
-                        <% books.forEach(oneBook => { %>
-                            <a href="/book/<%= oneBook._id %>" class="swiper-slide">
-                              <div class="flip-card">
-                                <div class="flip-card-inner">
-                                  <div class="flip-card-front">
-                                    <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
-                                  </div>
-                                  <div class="flip-card-back">
-                                    <p class="title"><%= oneBook.title %></p>
-                                    <p><%= oneBook.authorName %></p>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          <% }) %>
-                                                  
-                    </div>
-                    <div class="the-stand">
-                        <div class="stand-top"></div>
-                        <div class="stand"></div>
-                        <div class="stand-bottom"></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- icons -->
-        <section class="services" id="services" style="margin-bottom: 100px;">
-            <h1 class="heading">
-                <span>Services</span>
-            </h1>
-            <div class="icons-container">
-                <div class="icons">
-                    <i class="bi bi-currency-dollar"></i>
-                    <div class="content">
-                        <h3>Free</h3>
-                        <p>download or read for free</p>
-                    </div>
+                <div class="row">
+                    <a href="#home">Home </a>|
+                    <a href="#services">Services</a>|
+                    <a href="#categories">Categories</a>|
+                    <a href="#admin">Admins</a>|
+                    <a href="#contact">Contact </a>
                 </div>
 
-                <div class="icons">
-                    <i class="bi bi-lock-fill"></i>
-                    <div class="content">
-                        <h3>Web Security</h3>
-                        <p>save personal information </p>
-                    </div>
+                <div class="row1">
+                    <i class="bi bi-twitter"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-linkedin"></i>
                 </div>
-
-                <div class="icons">
-                    <i class="bi bi-chat-dots-fill"></i>
-                    <div class="content">
-                        <h3>Comments</h3>
-                        <p>add comments to books </p>
-                    </div>
-                </div>
-
-                <div class="icons">
-                    <i class="bi bi-headset"></i>
-                    <div class="content">
-                        <h3>24/7 support</h3>
-                        <p>Call us anytime</p>
-                    </div>
+                <div class="row2">
+                    <p>Lore @ 2023</p>
                 </div>
 
             </div>
-        </section>
-
-        <!-- category -->
-
-        <section class="categories" id="categories" style="padding:0 50px;">
-            <h1 class="heading">
-                <span>Categories</span>
-            </h1>
-
-            <!-- classic -->
-            <div class="category">
-                <div class="category-type">
-                    <p>classic</p>
-                    <a href="#"> see more >></a>
-                </div>
-
-                <div class="swiper categories-slider">
-
-                    <div class="swiper-wrapper">
-
-                        <!--  -->
-
-                        <a href="#" class="swiper-slide">
-                            <div class="book">
-                                <p>title:
-                                    <br>
-                                    author name:
-                                </p>
-                                <div class="cover">
-                                    <img src="../style/img/image-2.jpg" alt>
-                                </div>
-                            </div>
-                        </a>
-
+        </div>
+        <div class="contact">
+            <form action>
+                <div class="row1">
+                    <div class="column1">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
 
-                </div>
-            </div>
+                    <div class="column2">
+                        <textarea name="message" placeholder="write your message..."></textarea>
 
-            <!-- drama -->
-            <div class="category">
-                <div class="category-type">
-                    <p>drama</p>
-                    <a href="#"> see more >></a>
-                </div>
-
-                <div class="swiper categories-slider">
-
-                    <div class="swiper-wrapper">
-
-                        <!--  -->
-                        <a href="#" class="swiper-slide">
-                            <div class="book">
-                                <p>title:
-                                    <br>
-                                    author name:
-                                </p>
-                                <div class="cover">
-                                    <img src="../style/img/image.jpg" alt>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-
-                </div>
-            </div>
-
-        </section>
-
-        <!-- admin setion -->
-        <section id="admin">
-
-            <h1 class="heading">
-                <span>Admins</span>
-            </h1>
-            <div class="admin">
-                <div class="card-client">
-                    <div class="user-picture">
-                        <img src="../style/img/3.jpg" alt>
-                    </div>
-                    <p class="name-client"> Jhon Doe
-                        <span>CEO of WritBook
-                        </span>
-                    </p>
-                    <div class="social-media">
-
-                        <a href="#">
-                            <i class="fa-brands fa-twitter"></i>
-                            <span class="tooltip-social">Twitter</span>
-                        </a>
-
-                        <a href="#">
-                            <i class="fa-brands fa-instagram"></i>
-                            <span class="tooltip-social">Instagram</span>
-                        </a>
-
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"></i>
-                            <span class="tooltip-social">Facebook</span>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                            <span class="tooltip-social">LinkedIn</span>
-                        </a>
                     </div>
                 </div>
 
-                <div class="card-client">
-                    <div class="user-picture">
-                        <img src="../style/img/2.jpg" alt>
+                <div class="row2">
+                    <div>
+                        <input class="check" type="radio" name="pattern" id="complaint" value="complaint">
+                        <label for="complaint">Complaint</label>
                     </div>
-                    <p class="name-client"> Jhon Doe
-                        <span>CEO of WritBook
-                        </span>
-                    </p>
-                    <div class="social-media">
 
-                        <a href="#">
-                            <i class="fa-brands fa-twitter"></i>
-                            <span class="tooltip-social">Twitter</span>
-                        </a>
+                    <div>
+                        <input class="check" type="radio" name="pattern" id="support" value="support">
+                        <label for="support">Support</label>
+                    </div>
 
-                        <a href="#">
-                            <i class="fa-brands fa-instagram"></i>
-                            <span class="tooltip-social">Instagram</span>
-                        </a>
+                    <div>
+                        <input class="check" type="radio" name="pattern" id="advice" value="advice">
+                        <label for="advice">Advice</label>
+                    </div>
 
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"></i>
-                            <span class="tooltip-social">Facebook</span>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                            <span class="tooltip-social">LinkedIn</span>
-                        </a>
+                    <div>
+                        <input class="check" type="radio" name="pattern" id="other" value="other">
+                        <label for="other"> Other</label>
                     </div>
                 </div>
 
-                <div class="card-client">
-                    <div class="user-picture">
-                        <img src="../style/img/1.jpg" alt>
-                    </div>
-                    <p class="name-client"> Jhon Doe
-                        <span>CEO of WritBook
-                        </span>
-                    </p>
-                    <div class="social-media">
-
-                        <a href="#">
-                            <i class="fa-brands fa-twitter"></i>
-                            <span class="tooltip-social">Twitter</span>
-                        </a>
-
-                        <a href="#">
-                            <i class="fa-brands fa-instagram"></i>
-                            <span class="tooltip-social">Instagram</span>
-                        </a>
-
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"></i>
-                            <span class="tooltip-social">Facebook</span>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                            <span class="tooltip-social">LinkedIn</span>
-                        </a>
-                    </div>
+                <div class="btn">
+                    <button class="cta" type="submit">
+                        <span>send</span>
+                        <svg viewBox="0 0 13 10" height="10px" width="15px">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                    </button>
                 </div>
 
-            </div>
+            </form>
+        </div>
 
-        </section>
+    </footer>
 
-        <footer id="contact">
-
-            <div class="contact-bg" id="show-info">
-                <div class="footer-info">
-
-                    <div class="btn">
-                        <button class="cta" type="submit">
-                            <span>Contact Us</span>
-                            <svg viewBox="0 0 13 10" height="10px" width="15px">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <a href="#home">Home </a>|
-                        <a href="#services">Services</a>|
-                        <a href="#categories">Categories</a>|
-                        <a href="#admin">Admins</a>|
-                        <a href="#contact">Contact </a>
-                    </div>
-
-                    <div class="row1">
-                        <i class="bi bi-twitter"></i>
-                        <i class="bi bi-instagram"></i>
-                        <i class="bi bi-facebook"></i>
-                        <i class="bi bi-linkedin"></i>
-                    </div>
-                    <div class="row2">
-                        <p>Lore @ 2023</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="contact">
-                <form action>
-                    <div class="row1">
-                        <div class="column1">
-                            <input type="text" placeholder="First Name"
-                                name="firstName" required>
-                            <input type="email" placeholder="Email" name="email"
-                                required>
-                            <input type="password" placeholder="Password"
-                                name="password" required>
-                        </div>
-
-                        <div class="column2">
-                            <textarea name="message"
-                                placeholder="write your message..."></textarea>
-
-                        </div>
-                    </div>
-
-                    <div class="row2">
-                        <div>
-                            <input class="check" type="radio" name="pattern"
-                                id="complaint" value="complaint">
-                            <label for="complaint">Complaint</label>
-                        </div>
-
-                        <div>
-                            <input class="check" type="radio" name="pattern"
-                                id="support" value="support">
-                            <label for="support">Support</label>
-                        </div>
-
-                        <div>
-                            <input class="check" type="radio" name="pattern"
-                                id="advice" value="advice">
-                            <label for="advice">Advice</label>
-                        </div>
-
-                        <div>
-                            <input class="check" type="radio" name="pattern"
-                                id="other" value="other">
-                            <label for="other"> Other</label>
-                        </div>
-                    </div>
-
-                    <div class="btn">
-                        <button class="cta" type="submit">
-                            <span>send</span>
-                            <svg viewBox="0 0 13 10" height="10px" width="15px">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-
-        </footer>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-        <script src="../style/js/scroll.main.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="../style/js/scroll.main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 
     </body>
 
-</html>
+    </html>

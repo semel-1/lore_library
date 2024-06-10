@@ -2,6 +2,7 @@ const {
     Book,
     User
 } = require("../connection/db-config");
+
 const handleUserBooks = async (req, res, bookType, pageTitle) => {
     try {
         const userId = req.session.user._id;
@@ -14,7 +15,29 @@ const handleUserBooks = async (req, res, bookType, pageTitle) => {
         res.render('category', {
             pageName: "category",
             books: user[bookType],
-            pageTitle // Pass the title to the template
+            pageTitle
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: 'Internal server error'
+        });
+    }
+}
+
+
+
+exports.category = async (req, res) => {
+    const category = req.params.category;
+    try {
+        const books = await Book.find({
+            category: category
+        });
+
+        res.render('category', {
+            pageName: "category",
+            books: books,
+            pageTitle: category
         });
     } catch (err) {
         console.error(err);

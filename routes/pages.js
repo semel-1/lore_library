@@ -31,9 +31,12 @@ router.get("/book/:id/download", bookController.download);
 
 router.get("/book/:id/read", bookController.read);
 
-router.get("/favorite", categoryController.favorite)
+router.get("/favorite", categoryController.favorite);
 
-router.get("/readLater", categoryController.readLater)
+router.get("/readLater", categoryController.readLater);
+
+router.get('/category/:category', categoryController.category);
+
 
 
 
