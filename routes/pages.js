@@ -1,7 +1,8 @@
 const express = require("express");
 const bookController = require("../controllers/book");
 const homeController = require("../controllers/home");
-const categoryController = require("../controllers/category")
+const categoryController = require("../controllers/category");
+const searchController = require("../controllers/search");
 
 const router = express.Router();
 
@@ -36,6 +37,14 @@ router.get("/favorite", categoryController.favorite);
 router.get("/readLater", categoryController.readLater);
 
 router.get('/category/:category', categoryController.category);
+
+router.get("/search", searchController.search)
+
+
+
+
+module.exports = router;
+
 
 
 
