@@ -5,7 +5,8 @@ const {
 
 const handleUserBooks = async (req, res, bookType, pageTitle) => {
     try {
-        const userId = req.session.user._id;
+        const foundUser = req.session.user
+        const userId = foundUser._id;
         const user = await User.findById(userId).populate(bookType);
 
         if (!user) {
@@ -13,6 +14,7 @@ const handleUserBooks = async (req, res, bookType, pageTitle) => {
         }
 
         res.render('category', {
+            foundUser,
             pageName: "category",
             books: user[bookType],
             pageTitle

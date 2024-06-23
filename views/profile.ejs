@@ -1,0 +1,101 @@
+<%- include('./partials/header') %>
+    <section class="profile">
+        <% if (foundUser) { %>
+            <form method="post" enctype="multipart/form-data" action="/auth/updateUserInfo">
+                <div class="image-sec">
+                    <div class="image">
+                        <% if (foundUser.photo && foundUser.photo.data) { %>
+                            <img src="data:<%= foundUser.photo.contentType %>;base64,<%= photo %>" alt="Profile Photo">
+                            <% } else { %>
+                                <i class="bi bi-person-fill"></i> <!-- Placeholder icon when no photo is available -->
+                                <% } %>
+                    </div>
+                    <div class="message">
+                        <p>
+                            <%= message %>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="user-info">
+                    <div>
+                        <div class="row">
+                            <h2>First Name:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="text" value="<%= foundUser.firstName %>" name="firstName">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <h2>Last Name:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="text" value="<%= foundUser.lastName %>" name="lastName">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <h2>Email:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="email" value="<%= foundUser.email %>" name="email">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <h2>Phone:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="text" value="<%= foundUser.phone %>" name="phone">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <h2>Password:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="password" name="password" placeholder="Change your password">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <h2>Photo:</h2>
+                        </div>
+                        <div class="row-2">
+                            <input type="file" name="photo">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Update Profile</button>
+                </div>
+            </form>
+            <% } else { %>
+                <p>User not found</p>
+                <% } %>
+    </section>
+
+    <div class="books-mark">
+        <a href="/favorite">
+            <i class="bi bi-heart-fill" title="Books you love"></i>
+        </a>
+        <a href="/readlater">
+            <i class="bi bi-bookmark-fill" title="Read later"></i>
+        </a>
+    </div>
+
+    <script src="/lore/style/js/change_theme.min.js"></script>
+    </body>
+
+    </html>

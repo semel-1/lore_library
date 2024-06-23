@@ -3,6 +3,10 @@ const bookController = require("../controllers/book");
 const homeController = require("../controllers/home");
 const categoryController = require("../controllers/category");
 const searchController = require("../controllers/search");
+const profileController = require("../controllers/profile")
+const {
+  route
+} = require("./auth");
 
 const router = express.Router();
 
@@ -50,6 +54,7 @@ router.get('/category/:category', categoryController.category);
 
 router.get("/search", searchController.search);
 
+router.get("/profile", profileController.show)
 
 
 

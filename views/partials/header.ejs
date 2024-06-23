@@ -21,7 +21,7 @@
     <!-- header one -->
     <header class="header">
         <div class="header-1">
-            <a href="#" class="logo"> <i class="bi bi-book"></i> LORE</a>
+            <a href="/home" class="logo"> <i class="bi bi-book"></i> LORE</a>
 
 
             <form action="/search" class="search-form" method="get">
@@ -33,14 +33,14 @@
             <% if (foundUser=="student" ) { %>
                 <div class="icons-sation">
                     <div id="search-btn" class="bi bi-search"></div>
-                    <a href="/login" class="fa-solid fa-right-to-bracket"></a>
                     <a href="/signup" class="fa-solid fa-user-plus"></a>
+                    <a href="/login" class="fa-solid fa-right-to-bracket"></a>
+
                 </div>
                 <% }else{ %>
                     <div class="icons-sation">
                         <div id="search-btn" class="bi bi-search"></div>
-                        <a href="/readLater" class="bi bi-bookmark-fill"></a>
-                        <a href="/favorite" class="bi bi-suit-heart-fill"></a>
+                        <a href="/profile" class="fa-solid fa-user"></a>
                         <a href="/logout" class="fa-solid fa-arrow-right-from-bracket"></a>
                     </div>
                     <% } %>

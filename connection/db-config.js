@@ -22,7 +22,15 @@ const userSchema = new mongoose.Schema({
   readLaterBooks: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
-  }]
+  }],
+  photo: {
+    data: Buffer,
+    contentType: String
+  },
+  role: {
+    type: String,
+    default: "user"
+  }
 });
 
 
@@ -69,7 +77,6 @@ commentSchema.methods.getFormattedDate = function () {
   const date = new Date(this.createdAt);
   const current = Date.now();
   const time = current - date;
-  // Calculate days, hours, minutes, and seconds
   const seconds = Math.floor(time / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
