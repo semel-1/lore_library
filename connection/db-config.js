@@ -112,6 +112,36 @@ const ratingSchema = new mongoose.Schema({
 
 var Rating = mongoose.model("Rating", ratingSchema);
 
+const contactSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  firstName: {
+    type: String,
+    required: false,
+  },
+  email: {
+    type: String,
+    required: false,
+  },
+  message: {
+    type: String,
+    required: true,
+  },
+  messageType: {
+    type: String,
+    enum: ['complaint', 'support', 'advice', 'other'],
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+
+const Contact = mongoose.model('Contact', contactSchema);
 
 
 module.exports = {
@@ -119,5 +149,5 @@ module.exports = {
   Book,
   Comment,
   Rating,
-
+  Contact
 };

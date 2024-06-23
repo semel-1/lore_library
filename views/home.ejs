@@ -289,42 +289,36 @@
             </div>
         </div>
         <div class="contact">
-            <form action>
+            <form action="/auth/contact" method="post">
                 <div class="row1">
-                    <div class="column1">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                    </div>
-
-                    <div class="column2">
-                        <textarea name="message" placeholder="write your message..."></textarea>
-
-                    </div>
+                    <% if (foundUser=="student" ) { %>
+                        <div class="column1">
+                            <input type="text" placeholder="First Name" name="firstName" required>
+                            <input type="email" placeholder="Email" name="email" required>
+                        </div>
+                        <% } %>
+                            <div class="column2">
+                                <textarea name="message" placeholder="write your message..." required></textarea>
+                            </div>
                 </div>
-
                 <div class="row2">
                     <div>
-                        <input class="check" type="radio" name="pattern" id="complaint" value="complaint">
+                        <input class="check" type="radio" name="messageType" id="complaint" value="complaint" required>
                         <label for="complaint">Complaint</label>
                     </div>
-
                     <div>
-                        <input class="check" type="radio" name="pattern" id="support" value="support">
+                        <input class="check" type="radio" name="messageType" id="support" value="support" required>
                         <label for="support">Support</label>
                     </div>
-
                     <div>
-                        <input class="check" type="radio" name="pattern" id="advice" value="advice">
+                        <input class="check" type="radio" name="messageType" id="advice" value="advice" required>
                         <label for="advice">Advice</label>
                     </div>
-
                     <div>
-                        <input class="check" type="radio" name="pattern" id="other" value="other">
-                        <label for="other"> Other</label>
+                        <input class="check" type="radio" name="messageType" id="other" value="other" required>
+                        <label for="other">Other</label>
                     </div>
                 </div>
-
                 <div class="btn">
                     <button class="cta" type="submit">
                         <span>send</span>
@@ -334,8 +328,8 @@
                         </svg>
                     </button>
                 </div>
-
             </form>
+
         </div>
 
     </footer>

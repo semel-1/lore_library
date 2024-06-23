@@ -24,6 +24,16 @@ router.get("/login", (req, res) => {
 });
 
 
+router.get('/logout', (req, res) => {
+  if (req.session.user) {
+    req.session.user = false;
+    res.redirect('/');
+  } else {
+    res.redirect("/login")
+  }
+});
+
+
 router.get("/home", homeController.show)
 
 router.get("/book/:id", bookController.show);
@@ -38,7 +48,9 @@ router.get("/readLater", categoryController.readLater);
 
 router.get('/category/:category', categoryController.category);
 
-router.get("/search", searchController.search)
+router.get("/search", searchController.search);
+
+
 
 
 

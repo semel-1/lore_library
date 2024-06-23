@@ -1,15 +1,14 @@
 const {
-    Book
+    Book,
+    Contact
 } = require("../connection/db-config");
 
 exports.show = async (req, res) => {
     try {
         const foundUser = req.session.user;
 
-        // Fetch categories from the database
         const categories = await Book.distinct('category');
 
-        // Fetch books for each category
         const booksByCategory = {};
 
         for (const category of categories) {
@@ -18,10 +17,8 @@ exports.show = async (req, res) => {
             }).limit(10);
         }
 
-        // Fetch all books
         const books = await Book.find();
 
-        // Format books with image data
         const booksWithImgData = books.map(book => {
             const img = Buffer.from(book.img.data).toString("base64");
             const {
@@ -44,5 +41,37 @@ exports.show = async (req, res) => {
         res.status(500).json({
             error: "Internal server error"
         });
+    }
+};
+
+
+exports.contact = async (req, res) => {
+    const foundUser = req.session.user;
+    let {
+        firstName,
+        email,
+        message,
+        messageType
+    } = req.body;
+
+    if (foundUser) {
+        firstName = foundUser.firstName;
+        email = foundUser.email;
+    }
+
+    try {
+        const newContact = new Contact({
+            user: foundUser ? foundUser._id : null,
+            firstName,
+            email,
+            message,
+            messageType,
+        });
+
+        await newContact.save();
+        res.redirect("/home");
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('There was an error processing your request.');
     }
 };

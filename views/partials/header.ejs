@@ -30,11 +30,21 @@
             </form>
 
 
-            <div class="icons-sation">
-                <div id="search-btn" class="bi bi-search"></div>
-                <a href="/readLater" class="bi bi-bookmark-fill"></a>
-                <a href="/favorite" class="bi bi-suit-heart-fill"></a>
-            </div>
+            <% if (foundUser=="student" ) { %>
+                <div class="icons-sation">
+                    <div id="search-btn" class="bi bi-search"></div>
+                    <a href="/login" class="fa-solid fa-right-to-bracket"></a>
+                    <a href="/signup" class="fa-solid fa-user-plus"></a>
+                </div>
+                <% }else{ %>
+                    <div class="icons-sation">
+                        <div id="search-btn" class="bi bi-search"></div>
+                        <a href="/readLater" class="bi bi-bookmark-fill"></a>
+                        <a href="/favorite" class="bi bi-suit-heart-fill"></a>
+                        <a href="/logout" class="fa-solid fa-arrow-right-from-bracket"></a>
+                    </div>
+                    <% } %>
+
 
         </div>
 
