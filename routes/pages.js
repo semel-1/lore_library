@@ -3,7 +3,9 @@ const bookController = require("../controllers/book");
 const homeController = require("../controllers/home");
 const categoryController = require("../controllers/category");
 const searchController = require("../controllers/search");
-const profileController = require("../controllers/profile")
+const profileController = require("../controllers/profile");
+const adminUserController = require("../controllers/admin/user");
+const adminBookController = require("../controllers/admin/book");
 const {
   route
 } = require("./auth");
@@ -54,13 +56,12 @@ router.get('/category/:category', categoryController.category);
 
 router.get("/search", searchController.search);
 
-router.get("/profile", profileController.show)
+router.get("/profile", profileController.show);
 
+router.get("/admin", adminUserController.show);
+router.get('/auth/getUser/:id', adminUserController.getUserById);
 
-
-
-
-module.exports = router;
+router.get('/auth/getBook/:id', adminBookController.getBookById);
 
 
 

@@ -12,6 +12,7 @@ exports.login = async (req, res) => {
       email,
       password
     });
+    console.log(__dirname);
 
     if (!foundUser) {
       const errorMessage = "Email or Password is incorrect";
@@ -21,7 +22,12 @@ exports.login = async (req, res) => {
     }
 
     req.session.user = foundUser;
-    return res.redirect("/home");
+    if (foundUser.role === "admin") {
+      return res.redirect("/admin");
+    } else if (foundUser.role === "user") {
+      return res.redirect("/home")
+    }
+
   } catch (err) {
     console.error(err);
     return res.status(500).send("Internal Server Error");

@@ -20,13 +20,17 @@ exports.show = async (req, res) => {
         const books = await Book.find();
 
         const booksWithImgData = books.map(book => {
-            const img = Buffer.from(book.img.data).toString("base64");
+            let image = null;
+            if (book.image && book.image.data) {
+                image = Buffer.from(book.image.data).toString("base64");
+            }
+
             const {
                 _doc
             } = book;
             return {
                 ..._doc,
-                img
+                image
             };
         });
 
@@ -43,7 +47,6 @@ exports.show = async (req, res) => {
         });
     }
 };
-
 
 exports.contact = async (req, res) => {
     const foundUser = req.session.user;

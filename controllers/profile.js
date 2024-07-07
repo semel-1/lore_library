@@ -1,5 +1,3 @@
-const express = require('express');
-const mongoose = require('mongoose');
 const {
     User
 } = require('../connection/db-config');
@@ -45,7 +43,6 @@ exports.updateUserInfo = [
     async (req, res) => {
         try {
             const userId = req.session.user._id;
-
             const updateData = {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -62,7 +59,7 @@ exports.updateUserInfo = [
                     data: req.file.buffer,
                     contentType: req.file.mimetype,
                 };
-                photo = Buffer.from(updateData.photo).toString("base64")
+                photo = Buffer.from(updateData.photo.data).toString("base64");
             }
 
             const foundUser = await User.findByIdAndUpdate(userId, updateData, {
@@ -82,7 +79,7 @@ exports.updateUserInfo = [
                 photo,
                 foundUser,
                 pageName: "profile",
-                message: "Successfully Update the information"
+                message: "Successfully updated the information"
             });
         } catch (err) {
             console.error(err);
@@ -91,4 +88,5 @@ exports.updateUserInfo = [
             });
         }
     }
+
 ];

@@ -1,0 +1,74 @@
+<h2>Book Manager</h2>
+<% if (typeof message !=='undefined' ) { %>
+    <div class="success-message">
+        <%= message %>
+    </div>
+    <% } %>
+        <button id="add-book-btn">Add Book</button>
+        <table id="book-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Page Number</th>
+                    <th>language</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(book=> { %>
+                    <tr>
+                        <input type="hidden" name="bookId" value="<%= book._id %>">
+                        <td>
+                            <%= book.title %>
+                        </td>
+                        <td>
+                            <%= book.authorName %>
+                        </td>
+                        <td>
+                            <%= book.category %>
+                        </td>
+                        <td>
+                            <%= book.pageNumber %>
+                        </td>
+                        <td>
+                            <%= book.language %>
+                        </td>
+                        <td>
+                            <button class="edit-book-btn" id="edit-book-button" data-id="<%= book._id %>">Edit</button>
+                            <form class="delete-book-form" action="/auth/deleteBook" method="POST"
+                                style="display:inline;">
+                                <input type="hidden" name="id" value="<%= book._id %>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <div id="book-form-modal" class="modal">
+            <div class="modal-content">
+                <form id="book-form" enctype="multipart/form-data">
+                    <span class="close-book-btn">&times;</span>
+                    <input type="hidden" id="book-id" name="id">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                    <label for="authorName">Author</label>
+                    <input type="text" id="authorName" name="authorName" required>
+                    <label for="category">Category</label>
+                    <input type="text" id="category" name="category" required>
+                    <label for="pageNumber">Page Number</label>
+                    <input type="number" id="pageNumber" name="pageNumber" required>
+                    <label for="language">Language</label>
+                    <input type="text" id="language" name="language" required>
+                    <label for="insight">Insight</label>
+                    <textarea name="insight" id="insight" required></textarea>
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" required>
+                    <label for="file_input">File</label>
+                    <input type="file" id="file_input" name="file_input" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>

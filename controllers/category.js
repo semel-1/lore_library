@@ -31,12 +31,14 @@ const handleUserBooks = async (req, res, bookType, pageTitle) => {
 
 exports.category = async (req, res) => {
     const category = req.params.category;
+    const foundUser = req.session.user;
     try {
         const books = await Book.find({
             category: category
         });
 
         res.render('category', {
+            foundUser,
             pageName: "category",
             books: books,
             pageTitle: category

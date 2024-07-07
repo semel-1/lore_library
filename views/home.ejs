@@ -33,7 +33,7 @@
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                        <img src="data:image/jpeg;base64,<%= oneBook.img %>" alt="Book image">
+                                        <img src="data:image/jpeg;base64,<%= oneBook.image %>" alt="Book image">
                                     </div>
                                     <div class="flip-card-back">
                                         <p class="title">
@@ -132,7 +132,7 @@
                                             <%= book.authorName %>
                                     </p>
                                     <div class="cover">
-                                        <img src="data:<%= book.img.contentType %>;base64,<%= book.img.data.toString('base64') %>"
+                                        <img src="data:<%= book.image.contentType %>;base64,<%= book.image.data.toString('base64') %>"
                                             alt="<%= book.title %>">
                                     </div>
                                 </div>

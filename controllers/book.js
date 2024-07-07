@@ -23,7 +23,7 @@ exports.show = async (req, res) => {
       });
     }
 
-    const img = Buffer.from(book.img.data).toString("base64");
+    const image = Buffer.from(book.image.data).toString("base64");
 
     const comments = await Comment.find({
       book: req.params.id
@@ -48,7 +48,7 @@ exports.show = async (req, res) => {
       foundUser,
       averageReview,
       book,
-      img,
+      image,
       comments: formattedComments,
       pageName: "book"
     });

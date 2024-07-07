@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/style/css/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" class="tab-link" data-target="#user-manager">User Manager</a></li>
+                    <li><a href="#" class="tab-link" data-target="#book-manager">Book Manager</a></li>
+                    <li><a href="#" class="tab-link" data-target="#category-manager">Category Manager</a></li>
+                    <li><a href="#" class="tab-link" data-target="#message-manager">Messages Manager</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <!-- User Manager Section -->
+            <section id="user-manager" class="tab-content active">
+                <%- include('./admin/userSection') %>
+            </section>
+
+            <!-- Book Manager Section -->
+            <section id="book-manager" class="tab-content">
+                <%- include('./admin/bookSection') %>
+            </section>
+
+            <section id="category-manager" class="tab-content">
+                <h2>Category Manager</h2>
+            </section>
+            <section id="message-manager" class="tab-content">
+                <h2>Messages Manager</h2>
+            </section>
+        </main>
+    </div>
+    <script src="/style/js/admin/admin.js"></script>
+    <script src="/style/js/admin/userManger.js"></script>
+    <script src="/style/js/admin/bookManger.js"></script>
+
+</body>
+
+</html>

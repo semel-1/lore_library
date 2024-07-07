@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
-const fs = require("fs-extra");
-const path = require("path");
-const {
-  type
-} = require("os");
 
-mongoose.connect("mongodb://localhost:27017/Lore").then(() => {
-  console.log("successfully connected with mongo database");
-});
+mongoose.connect("mongodb://localhost:27017/Lore")
+  .then(() => console.log("Successfully connected to MongoDB database"))
+  .catch((err) => console.error("Connection error", err));
 
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email: String,
-  phone: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phone: {
+    type: String,
+    required: true,
+    unique: true
+  },
   password: String,
   favoriteBooks: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -33,8 +36,26 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+// Pre middleware for removing comments and ratings associated with the user
+userSchema.pre('remove', async function (next) {
+  try {
+    // Remove all comments associated with this user
+    await Comment.deleteMany({
+      user: this._id
+    });
 
-var User = mongoose.model("User", userSchema);
+    // Remove all ratings associated with this user
+    await Rating.deleteMany({
+      user: this._id
+    });
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+const User = mongoose.model("User", userSchema);
 
 const bookSchema = new mongoose.Schema({
   title: String,
@@ -44,7 +65,7 @@ const bookSchema = new mongoose.Schema({
   language: String,
   numberOfDownload: Number,
   insight: String,
-  img: {
+  image: {
     data: Buffer,
     contentType: String
   },
@@ -54,7 +75,7 @@ const bookSchema = new mongoose.Schema({
   },
 });
 
-var Book = mongoose.model("Book", bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 const commentSchema = new mongoose.Schema({
   book: {
@@ -72,7 +93,6 @@ const commentSchema = new mongoose.Schema({
   }
 });
 
-
 commentSchema.methods.getFormattedDate = function () {
   const date = new Date(this.createdAt);
   const current = Date.now();
@@ -81,10 +101,6 @@ commentSchema.methods.getFormattedDate = function () {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
-
-  const remainingHours = hours % 24;
-  const remainingMinutes = minutes % 60;
-  const remainingSeconds = seconds % 60;
 
   if (days > 0) {
     return `${days} days ago`;
@@ -97,9 +113,7 @@ commentSchema.methods.getFormattedDate = function () {
   }
 };
 
-var Comment = mongoose.model("Comment", commentSchema);
-
-
+const Comment = mongoose.model("Comment", commentSchema);
 
 const ratingSchema = new mongoose.Schema({
   book: {
@@ -117,39 +131,27 @@ const ratingSchema = new mongoose.Schema({
   }
 });
 
-var Rating = mongoose.model("Rating", ratingSchema);
+const Rating = mongoose.model("Rating", ratingSchema);
 
 const contactSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User'
   },
-  firstName: {
-    type: String,
-    required: false,
-  },
-  email: {
-    type: String,
-    required: false,
-  },
-  message: {
-    type: String,
-    required: true,
-  },
+  firstName: String,
+  email: String,
+  message: String,
   messageType: {
     type: String,
-    enum: ['complaint', 'support', 'advice', 'other'],
-    required: true,
+    enum: ['complaint', 'support', 'advice', 'other']
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
-
 const Contact = mongoose.model('Contact', contactSchema);
-
 
 module.exports = {
   User,
