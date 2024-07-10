@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const User = require("../connection/db-config").User;
 
 exports.signup = async (req, res) => {
@@ -30,12 +31,16 @@ exports.signup = async (req, res) => {
       });
     }
 
+    // Encrypt the password before saving
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const newUser = new User({
       firstName,
       lastName,
       email,
       phone,
-      password,
+      password: hashedPassword, // Save the hashed password
     });
 
     await newUser.save();

@@ -5,48 +5,51 @@
     </div>
     <% } %>
         <button id="add-book-btn">Add Book</button>
-        <table id="book-table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Page Number</th>
-                    <th>language</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% books.forEach(book=> { %>
+        <div class="table-container">
+            <table id="book-table">
+                <thead>
                     <tr>
-                        <input type="hidden" name="bookId" value="<%= book._id %>">
-                        <td>
-                            <%= book.title %>
-                        </td>
-                        <td>
-                            <%= book.authorName %>
-                        </td>
-                        <td>
-                            <%= book.category %>
-                        </td>
-                        <td>
-                            <%= book.pageNumber %>
-                        </td>
-                        <td>
-                            <%= book.language %>
-                        </td>
-                        <td>
-                            <button class="edit-book-btn" id="edit-book-button" data-id="<%= book._id %>">Edit</button>
-                            <form class="delete-book-form" action="/auth/deleteBook" method="POST"
-                                style="display:inline;">
-                                <input type="hidden" name="id" value="<%= book._id %>">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Page Number</th>
+                        <th>language</th>
+                        <th>Actions</th>
                     </tr>
-                    <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% books.forEach(book=> { %>
+                        <tr>
+                            <input type="hidden" name="bookId" value="<%= book._id %>">
+                            <td>
+                                <%= book.title %>
+                            </td>
+                            <td>
+                                <%= book.authorName %>
+                            </td>
+                            <td>
+                                <%= book.category %>
+                            </td>
+                            <td>
+                                <%= book.pageNumber %>
+                            </td>
+                            <td>
+                                <%= book.language %>
+                            </td>
+                            <td>
+                                <button class="edit-book-btn" id="edit-book-button"
+                                    data-id="<%= book._id %>">Edit</button>
+                                <form class="delete-book-form" action="/auth/deleteBook" method="POST"
+                                    style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= book._id %>">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
         <div id="book-form-modal" class="modal">
             <div class="modal-content">
                 <form id="book-form" enctype="multipart/form-data">

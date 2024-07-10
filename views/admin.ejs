@@ -16,8 +16,9 @@
                 <ul>
                     <li><a href="#" class="tab-link" data-target="#user-manager">User Manager</a></li>
                     <li><a href="#" class="tab-link" data-target="#book-manager">Book Manager</a></li>
-                    <li><a href="#" class="tab-link" data-target="#category-manager">Category Manager</a></li>
                     <li><a href="#" class="tab-link" data-target="#message-manager">Messages Manager</a></li>
+                    <li><a href="#" class="tab-link" data-target="#comment-manager">Comments Manager</a></li>
+
                 </ul>
             </nav>
         </aside>
@@ -32,17 +33,24 @@
                 <%- include('./admin/bookSection') %>
             </section>
 
-            <section id="category-manager" class="tab-content">
-                <h2>Category Manager</h2>
-            </section>
+            <!-- message manger section -->
             <section id="message-manager" class="tab-content">
-                <h2>Messages Manager</h2>
+                <%- include('./admin/messageSection') %>
+            </section>
+
+            <!-- comment manger section -->
+            <section id="comment-manager" class="tab-content">
+                <%- include('./admin/commentSection') %>
             </section>
         </main>
     </div>
     <script src="/style/js/admin/admin.js"></script>
     <script src="/style/js/admin/userManger.js"></script>
     <script src="/style/js/admin/bookManger.js"></script>
+    <script src="/style/js/admin/messageManger.js"></script>
+    <script src="/style/js/admin/commentManger.js"></script>
+
+
 
 </body>
 

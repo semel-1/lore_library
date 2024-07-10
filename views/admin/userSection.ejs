@@ -5,52 +5,55 @@
     </div>
     <% } %>
         <button id="add-user-btn">Add User</button>
-        <table id="user-table">
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Password</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% users.forEach(user=> { %>
+        <div class="table-container">
+            <table id="user-table">
+                <thead>
                     <tr>
-                        <input type="hidden" name="userId" value="<%= user._id %>">
-                        <td>
-                            <%= user.firstName %>
-                        </td>
-                        <td>
-                            <%= user.lastName %>
-                        </td>
-                        <td>
-                            <%= user.email %>
-                        </td>
-                        <td>
-                            <%= user.phone %>
-                        </td>
-                        <td>
-                            <%= user.password %>
-                        </td>
-                        <td>
-                            <%= user.role %>
-                        </td>
-                        <td>
-                            <button class="edit-user-btn" id="edit-button" data-id="<%= user._id %>">Edit</button>
-                            <form class="delete-user-form" action="/auth/deleteUser" method="POST"
-                                style="display:inline;">
-                                <input type="hidden" name="id" value="<%= user._id %>">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Actions</th>
                     </tr>
-                    <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% users.forEach(user=> { %>
+                        <tr>
+                            <input type="hidden" name="userId" value="<%= user._id %>">
+                            <td>
+                                <%= user.firstName %>
+                            </td>
+                            <td>
+                                <%= user.lastName %>
+                            </td>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>
+                                <%= user.phone %>
+                            </td>
+                            <td>
+                                <%= user.password %>
+                            </td>
+                            <td>
+                                <%= user.role %>
+                            </td>
+                            <td>
+                                <button class="edit-user-btn" id="edit-button" data-id="<%= user._id %>">Edit</button>
+                                <form class="delete-user-form" action="/auth/deleteUser" method="POST"
+                                    style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= user._id %>">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+
         <div id="user-form-modal" class="modal">
             <div class="modal-content">
                 <form id="user-form">

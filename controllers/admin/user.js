@@ -1,37 +1,39 @@
 const {
     User,
-    Book
+    Book,
+    Contact,
+    Comment
 } = require('../../connection/db-config');
 
 
 exports.show = async (req, res) => {
-
     try {
         const foundUser = req.session.user;
         if (foundUser.role === "admin") {
-            // Fetch data as needed for the admin page
             const books = await Book.find({}).sort({
                 createdAt: -1
-            }); // Example fetching books
-            const users = await User.find({}); // Example fetching users
+            });
+            const users = await User.find({});
+            const messages = await Contact.find();
+            const comments = await Comment.find();
 
-            // Render admin.ejs with appropriate data
             res.render('admin', {
                 books: books,
                 users: users,
+                messages: messages,
+                comments: comments,
                 pageName: 'admin',
                 message: req.query.message
             });
         } else {
-            res.redirect("/home")
+            res.redirect("/home");
         }
-
     } catch (error) {
         console.error('Error rendering admin page:', error);
         res.status(500).send('Internal Server Error');
     }
-
 };
+
 
 exports.getUserById = async (req, res) => {
     try {

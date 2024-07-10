@@ -6,6 +6,8 @@ const searchController = require("../controllers/search");
 const profileController = require("../controllers/profile");
 const adminUserController = require("../controllers/admin/user");
 const adminBookController = require("../controllers/admin/book");
+const adminMessageController = require("../controllers/admin/message");
+const adminCommentController = require("../controllers/admin/comment")
 const {
   route
 } = require("./auth");
@@ -62,7 +64,8 @@ router.get("/admin", adminUserController.show);
 router.get('/auth/getUser/:id', adminUserController.getUserById);
 
 router.get('/auth/getBook/:id', adminBookController.getBookById);
-
+router.get('/messages', adminMessageController.fetchMessages);
+router.get('/comments', adminCommentController.getComments);
 
 
 

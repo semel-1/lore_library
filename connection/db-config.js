@@ -148,6 +148,10 @@ const contactSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  isRead: {
+    type: Boolean,
+    default: false
   }
 });
 

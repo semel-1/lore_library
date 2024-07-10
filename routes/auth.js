@@ -7,6 +7,8 @@ const homeController = require("../controllers/home");
 const profileController = require("../controllers/profile");
 const adminUserController = require("../controllers/admin/user");
 const adminBookController = require("../controllers/admin/book");
+const adminMessageController = require("../controllers/admin/message");
+const adminCommentController = require("../controllers/admin/comment")
 
 const router = express.Router();
 
@@ -24,6 +26,11 @@ router.post('/deleteUser', adminUserController.deleteUser);
 router.post('/addBook', adminBookController.addBook);
 router.post('/editBook', adminBookController.editBook);
 router.post('/deleteBook', adminBookController.deleteBook);
+router.post('/messages/:id/read', adminMessageController.markAsRead);
+router.delete('/messages/:id', adminMessageController.deleteMessage);
+router.delete('/comments/:id', adminCommentController.deleteComment);
+
+
 
 
 module.exports = router;
