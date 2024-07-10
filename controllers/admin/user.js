@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const {
     User,
     Book,
@@ -18,10 +19,10 @@ exports.show = async (req, res) => {
             const comments = await Comment.find();
 
             res.render('admin', {
-                books: books,
-                users: users,
-                messages: messages,
-                comments: comments,
+                books,
+                users,
+                messages,
+                comments,
                 pageName: 'admin',
                 message: req.query.message
             });
@@ -34,33 +35,29 @@ exports.show = async (req, res) => {
     }
 };
 
-
 exports.getUserById = async (req, res) => {
     try {
         const userId = req.params.id;
         const user = await User.findById(userId);
 
         if (!user) {
-            // If user not found, return a 404 error.
             return res.status(404).json({
                 error: 'User not found'
             });
         }
 
-        // Return the user.
         res.json(user);
     } catch (error) {
         console.error('Error fetching user:', error);
-        // If an error occurred, return a 500 error.
         res.status(500).json({
             error: 'Internal server error'
         });
     }
 };
 
+
 exports.addUser = async (req, res) => {
     try {
-        // Extract user details from the request body.
         const {
             firstName,
             lastName,
@@ -70,74 +67,45 @@ exports.addUser = async (req, res) => {
             role
         } = req.body;
 
-        // Create a new user object with the extracted details.
+        // Check if user already exists
+        const foundUser = await User.findOne({
+            $or: [{
+                email
+            }, {
+                phone
+            }]
+        });
+        if (foundUser) {
+            let errorMessage = foundUser.email === email ? "Email already exists" : "Phone already exists";
+            return res.status(400).json({
+                success: false,
+                message: errorMessage
+            });
+        }
+
+        // Hash the password
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        // Create a new user object with the hashed password
         const newUser = new User({
             firstName,
             lastName,
             email,
             phone,
-            password,
+            password: hashedPassword,
             role
         });
 
-        // Save the new user to the database.
+        // Save the new user to the database
         await newUser.save();
 
-        // Send a success response to the client.
+        // Send a success response to the client
         res.json({
             success: true,
             message: 'User added successfully'
         });
     } catch (error) {
-        // Log any error that occurs and return a 500 error to the client.
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-    }
-};
-
-exports.editUser = async (req, res) => {
-    try {
-        // Extract user details from the request body.
-        const {
-            id, // The ID of the user to be updated.
-            firstName, // The first name of the user.
-            lastName, // The last name of the user.
-            email, // The email of the user.
-            phone, // The phone number of the user.
-            password, // The password of the user.
-            role // The role of the user.
-        } = req.body;
-
-        // Find the user by ID and update the fields with the new values.
-        const updatedUser = await User.findByIdAndUpdate(id, {
-            firstName,
-            lastName,
-            email,
-            phone,
-            password,
-            role
-        }, {
-            new: true // Return the updated document.
-        });
-
-        if (!updatedUser) {
-            // If the user is not found, return a 404 error.
-            return res.status(404).json({
-                success: false,
-                message: 'User not found'
-            });
-        }
-
-        // Return a success response with a message.
-        res.json({
-            success: true,
-            message: 'User updated successfully'
-        });
-    } catch (error) {
-        // Log any error that occurs and return a 500 error to the client.
         console.error(error);
         res.status(500).json({
             success: false,
@@ -145,6 +113,61 @@ exports.editUser = async (req, res) => {
         });
     }
 };
+
+
+exports.editUser = async (req, res) => {
+    try {
+        const {
+            id,
+            firstName,
+            lastName,
+            email,
+            phone,
+            password,
+            role
+        } = req.body;
+
+        // Find the user by ID
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        // Hash the password if it is provided
+        let hashedPassword;
+        if (password) {
+            const saltRounds = 10;
+            hashedPassword = await bcrypt.hash(password, saltRounds);
+        }
+
+        // Update the user with the new values
+        user.firstName = firstName || user.firstName;
+        user.lastName = lastName || user.lastName;
+        user.email = email || user.email;
+        user.phone = phone || user.phone;
+        user.password = hashedPassword || user.password;
+        user.role = role || user.role;
+
+        // Save the updated user to the database
+        await user.save();
+
+        // Return a success response
+        res.json({
+            success: true,
+            message: 'User updated successfully'
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+};
+
 
 
 exports.deleteUser = async (req, res) => {
