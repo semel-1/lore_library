@@ -267,24 +267,20 @@ input:checked+.slider:before {
 
 .links {
     display: flex;
-    justify-content: right;
-
+    justify-content: space-between;
 
 }
 
 .links a {
     margin: 10px 0;
     font-size: 0.75em;
+    color: var(--red-color);
     text-decoration: none;
-    transition: 0.7s;
-
 }
 
 .links a:hover,
-.links a:nth-child(1) {
+.links a:nth-child(2) {
     color: var(--beige-color);
-    transition: 0.7s;
-
 
 }
 

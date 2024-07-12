@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../style/css/signup.css">
-        <title>Sign up</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/css/signup.css">
+    <title>Sign up</title>
 
-    </head>
+</head>
 
-    <body id="particles-js">
-        <div class="contener">
-            <form action="/auth/signup" method="post" class="box">
-                <div class="icon_mood">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span id="icon" class="slider"></span>
-                    </label>
-                </div>
+<body id="particles-js">
+    <div class="contener">
+        <form action="/auth/signup" method="post" class="box">
+            <div class="icon_mood">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span id="icon" class="slider"></span>
+                </label>
+            </div>
 
-                <div class="form">
-                    <h2>Sign up</h2>
+            <div class="form">
+                <h2>Sign up</h2>
 
-                    <!-- طباعة الخطأ -->
-                    <% if (errorMessage.length > 0){ %>
+                <!-- طباعة الخطأ -->
+                <% if (errorMessage.length> 0){ %>
                     <div class="alert">
                         <p class="errorMessage">
                             <%= errorMessage %>
@@ -32,99 +32,87 @@
                     </div>
                     <% } %>
 
-                    <div class="inputBox">
-                        <input type="text" name="firstName" required
-                            autocomplete="off">
-                        <label>
-                            <span style="transition-delay:0ms">F</span><span
-                                style="transition-delay:50ms">i</span><span
-                                style="transition-delay:100ms">r</span><span
-                                style="transition-delay:150ms">s</span><span
-                                style="transition-delay:150ms">t</span><span
-                                style="transition-delay:150ms"> </span><span
-                                style="transition-delay:200ms">N</span><span
-                                style="transition-delay:250ms">a</span><span
-                                style="transition-delay:300ms">m</span><span
-                                style="transition-delay:350ms">e</span>
-                        </label>
-                        <i></i>
-                    </div>
+                        <div class="inputBox">
+                            <input type="text" name="firstName" required autocomplete="off">
+                            <label>
+                                <span style="transition-delay:0ms">F</span><span
+                                    style="transition-delay:50ms">i</span><span
+                                    style="transition-delay:100ms">r</span><span
+                                    style="transition-delay:150ms">s</span><span
+                                    style="transition-delay:150ms">t</span><span style="transition-delay:150ms">
+                                </span><span style="transition-delay:200ms">N</span><span
+                                    style="transition-delay:250ms">a</span><span
+                                    style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+                            </label>
+                            <i></i>
+                        </div>
 
-                    <div class="inputBox">
-                        <input type="text" name="lastName" required
-                            autocomplete="off">
-                        <label>
-                            <span style="transition-delay:0ms">L</span><span
-                                style="transition-delay:50ms">a</span><span
-                                style="transition-delay:100ms">s</span><span
-                                style="transition-delay:150ms">t</span><span
-                                style="transition-delay:150ms"> </span><span
-                                style="transition-delay:200ms">N</span><span
-                                style="transition-delay:250ms">a</span><span
-                                style="transition-delay:300ms">m</span><span
-                                style="transition-delay:350ms">e</span>
-                        </label>
-                        <i></i>
-                    </div>
+                        <div class="inputBox">
+                            <input type="text" name="lastName" required autocomplete="off">
+                            <label>
+                                <span style="transition-delay:0ms">L</span><span
+                                    style="transition-delay:50ms">a</span><span
+                                    style="transition-delay:100ms">s</span><span
+                                    style="transition-delay:150ms">t</span><span style="transition-delay:150ms">
+                                </span><span style="transition-delay:200ms">N</span><span
+                                    style="transition-delay:250ms">a</span><span
+                                    style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+                            </label>
+                            <i></i>
+                        </div>
 
-                    <div class="inputBox">
-                        <input type="email" name="email" required
-                            autocomplete="off">
-                        <label>
-                            <span style="transition-delay:0ms">E</span><span
-                                style="transition-delay:50ms">m</span><span
-                                style="transition-delay:100ms">a</span><span
-                                style="transition-delay:150ms">i</span><span
-                                style="transition-delay:150ms">l</span>
-                        </label>
-                        <i></i>
-                    </div>
+                        <div class="inputBox">
+                            <input type="email" name="email" required autocomplete="off">
+                            <label>
+                                <span style="transition-delay:0ms">E</span><span
+                                    style="transition-delay:50ms">m</span><span
+                                    style="transition-delay:100ms">a</span><span
+                                    style="transition-delay:150ms">i</span><span style="transition-delay:150ms">l</span>
+                            </label>
+                            <i></i>
+                        </div>
 
-                    <div class="inputBox">
-                        <input type="tel" name="phone" pattern="^09\d{8}$"
-                            title="the number phone should be start 09 and be 10 numbers "
-                            required autocomplete="off">
-                        <label>
-                            <span style="transition-delay:0ms">P</span><span
-                                style="transition-delay:50ms">h</span><span
-                                style="transition-delay:100ms">o</span><span
-                                style="transition-delay:150ms">n</span><span
-                                style="transition-delay:150ms">e</span>
-                        </label>
-                        <i></i>
-                    </div>
+                        <div class="inputBox">
+                            <input type="tel" name="phone" pattern="^09\d{8}$"
+                                title="the number phone should be start 09 and be 10 numbers " required
+                                autocomplete="off">
+                            <label>
+                                <span style="transition-delay:0ms">P</span><span
+                                    style="transition-delay:50ms">h</span><span
+                                    style="transition-delay:100ms">o</span><span
+                                    style="transition-delay:150ms">n</span><span style="transition-delay:150ms">e</span>
+                            </label>
+                            <i></i>
+                        </div>
 
-                    <div class="inputBox">
-                        <input type="password" name="password" required
-                            autocomplete="off">
-                        <label>
-                            <span style="transition-delay:0ms">P</span><span
-                                style="transition-delay:50ms">a</span><span
-                                style="transition-delay:100ms">s</span><span
-                                style="transition-delay:150ms">s</span><span
-                                style="transition-delay:150ms">w</span><span
-                                style="transition-delay:150ms">o</span><span
-                                style="transition-delay:200ms">r</span><span
-                                style="transition-delay:250ms">d</span>
-                        </label>
-                        <i></i>
-                    </div>
+                        <div class="inputBox">
+                            <input type="password" name="password" required autocomplete="off">
+                            <label>
+                                <span style="transition-delay:0ms">P</span><span
+                                    style="transition-delay:50ms">a</span><span
+                                    style="transition-delay:100ms">s</span><span
+                                    style="transition-delay:150ms">s</span><span
+                                    style="transition-delay:150ms">w</span><span
+                                    style="transition-delay:150ms">o</span><span
+                                    style="transition-delay:200ms">r</span><span style="transition-delay:250ms">d</span>
+                            </label>
+                            <i></i>
+                        </div>
 
-                    <div class="links">
-                        <a href="#">forget your password</a>
-                        <a href="/login">log in</a>
-                    </div>
+                        <div class="links">
+                            <a href="/login">log in</a>
+                        </div>
 
-                    <div class="submit_b">
-                        <button type="submit">Signup</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                        <div class="submit_b">
+                            <button type="submit">Signup</button>
+                        </div>
+            </div>
+        </form>
+    </div>
 
-        <script src="../style/js/change_theme.min.js"></script>
-        <script src="../style/js/app.js"></script>
-        <script src="../style/js/particles.js"></script>
-    </body>
+    <script src="../style/js/change_theme.min.js"></script>
+    <script src="../style/js/app.js"></script>
+    <script src="../style/js/particles.js"></script>
+</body>
 
 </html>
