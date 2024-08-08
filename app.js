@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require('multer');
 const cookieParser = require('cookie-parser')
-const session = require("express-session");
 require('dotenv').config();
 
 
@@ -29,13 +28,7 @@ const upload = multer({
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(
-  session({
-    secret: "thisismysecretkey",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+
 app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
