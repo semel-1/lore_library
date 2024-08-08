@@ -58,13 +58,30 @@ userSchema.pre('remove', async function (next) {
 const User = mongoose.model("User", userSchema);
 
 const bookSchema = new mongoose.Schema({
-  title: String,
-  authorName: String,
-  category: String,
-  pageNumber: Number,
-  language: String,
-  numberOfDownload: Number,
-  insight: String,
+  title: {
+    type: String,
+    required: true
+  },
+  authorName: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  pageNumber: {
+    type: Number,
+    required: true
+  },
+  language: {
+    type: String,
+    required: true
+  },
+  insight: {
+    type: String,
+    required: true
+  },
   image: {
     data: Buffer,
     contentType: String
@@ -72,7 +89,7 @@ const bookSchema = new mongoose.Schema({
   file: {
     data: Buffer,
     contentType: String
-  },
+  }
 });
 
 const Book = mongoose.model("Book", bookSchema);

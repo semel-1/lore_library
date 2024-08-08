@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require("../connection/db-config").User;
 
 exports.login = async (req, res) => {
@@ -8,26 +9,34 @@ exports.login = async (req, res) => {
       password
     } = req.body;
 
-    // Find the user by email
     const foundUser = await User.findOne({
-      email: email
+      email
     });
     if (!foundUser) {
-      return res.render("login", {
+      return res.status(400).render("login", {
         errorMessage: "Invalid email or password"
       });
     }
 
-    // Compare the provided password with the hashed password in the database
     const isMatch = await bcrypt.compare(password, foundUser.password);
     if (!isMatch) {
-      return res.render("login", {
+      return res.status(400).render("login", {
         errorMessage: "Invalid email or password"
       });
     }
 
-    // If password matches, proceed with the login process
-    req.session.user = foundUser;
+    const token = jwt.sign({
+      id: foundUser._id
+    }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000,
+    });
+
     return res.redirect("/home");
   } catch (err) {
     console.error(err);

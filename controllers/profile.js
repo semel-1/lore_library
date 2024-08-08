@@ -12,7 +12,7 @@ let message = ""
 
 // Show profile
 exports.show = async (req, res) => {
-    const foundUser = req.session.user;
+    const foundUser = req.user;
     if (foundUser.photo && foundUser.photo.data) {
         photo = Buffer.from(foundUser.photo.data).toString("base64");
     }
@@ -42,7 +42,7 @@ exports.updateUserInfo = [
     upload.single('photo'),
     async (req, res) => {
         try {
-            const userId = req.session.user._id;
+            const userId = req.user._id;
             const updateData = {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -73,7 +73,7 @@ exports.updateUserInfo = [
             }
 
             // Update session user
-            req.session.user = foundUser;
+            req.user = foundUser;
 
             res.render('profile', {
                 photo,

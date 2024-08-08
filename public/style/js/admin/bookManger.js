@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const response = await fetch(bookId ? `/auth/editBook` : '/auth/addBook', {
-                method: 'POST',
+                method: 'PATCH',
                 body: formData
             });
 

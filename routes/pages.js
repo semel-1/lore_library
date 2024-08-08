@@ -7,10 +7,8 @@ const profileController = require("../controllers/profile");
 const adminUserController = require("../controllers/admin/user");
 const adminBookController = require("../controllers/admin/book");
 const adminMessageController = require("../controllers/admin/message");
-const adminCommentController = require("../controllers/admin/comment")
-const {
-  route
-} = require("./auth");
+const adminCommentController = require("../controllers/admin/comment");
+const authController = require("../controllers/auth");
 
 const router = express.Router();
 
@@ -31,43 +29,22 @@ router.get("/login", (req, res) => {
   });
 });
 
-
-router.get('/logout', (req, res) => {
-  if (req.session.user) {
-    req.session.user = false;
-    res.redirect('/');
-  } else {
-    res.redirect("/login")
-  }
-});
-
-
-router.get("/home", homeController.show)
-
-router.get("/book/:id", bookController.show);
-
-router.get("/book/:id/download", bookController.download);
-
-router.get("/book/:id/read", bookController.read);
-
-router.get("/favorite", categoryController.favorite);
-
-router.get("/readLater", categoryController.readLater);
-
-router.get('/category/:category', categoryController.category);
+router.get('/logout', authController.logout);
+router.get("/home", authController.isLogedIn, homeController.show);
+router.get("/book/:id", authController.isLogedIn, bookController.show);
+router.get("/book/:id/download", authController.isLogedIn, bookController.download);
+router.get("/book/:id/read", authController.isLogedIn, bookController.read);
+router.get("/favorite", authController.isLogedIn, categoryController.favorite);
+router.get("/readLater", authController.isLogedIn, categoryController.readLater);
+router.get('/category/:category', authController.isLogedIn, categoryController.category);
 
 router.get("/search", searchController.search);
+router.get("/profile", authController.isLogedIn, profileController.show);
 
-router.get("/profile", profileController.show);
-
-router.get("/admin", adminUserController.show);
-router.get('/auth/getUser/:id', adminUserController.getUserById);
-
-router.get('/auth/getBook/:id', adminBookController.getBookById);
-router.get('/messages', adminMessageController.fetchMessages);
-router.get('/comments', adminCommentController.getComments);
-
-
-
+router.get("/admin", authController.isLogedIn, authController.restrictTo('admin'), adminUserController.show);
+router.get('/auth/getUser/:id', authController.isLogedIn, authController.restrictTo('admin'), adminUserController.getUserById);
+router.get('/auth/getBook/:id', authController.isLogedIn, authController.restrictTo('admin'), adminBookController.getBookById);
+router.get('/messages', authController.isLogedIn, authController.restrictTo('admin'), adminMessageController.fetchMessages);
+router.get('/comments', authController.isLogedIn, authController.restrictTo('admin'), adminCommentController.getComments);
 
 module.exports = router;

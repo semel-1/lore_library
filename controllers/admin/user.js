@@ -9,15 +9,23 @@ const {
 
 exports.show = async (req, res) => {
     try {
-        const foundUser = req.session.user;
-        if (foundUser.role === "admin") {
+        // Check if the user is an admin
+        const foundUser = req.user;
+        const userRole = req.userRole;
+
+        if (userRole === "admin") {
+            // Find all books, sort by creation date
             const books = await Book.find({}).sort({
                 createdAt: -1
             });
+            // Find all users
             const users = await User.find({});
-            const messages = await Contact.find();
-            const comments = await Comment.find();
+            // Find all messages
+            const messages = await Contact.find({});
+            // Find all comments
+            const comments = await Comment.find({});
 
+            // Render the admin page with the data
             res.render('admin', {
                 books,
                 users,
@@ -27,27 +35,37 @@ exports.show = async (req, res) => {
                 message: req.query.message
             });
         } else {
+            // Redirect to the home page if the user is not an admin
             res.redirect("/home");
         }
     } catch (error) {
         console.error('Error rendering admin page:', error);
+        // Send an internal server error response if an error occurs
         res.status(500).send('Internal Server Error');
     }
 };
 
+
+// Get user by ID
 exports.getUserById = async (req, res) => {
     try {
+        // Extract user ID from request parameters
         const userId = req.params.id;
+
+        // Find user by ID
         const user = await User.findById(userId);
 
+        // If user not found, return a 404 error
         if (!user) {
             return res.status(404).json({
                 error: 'User not found'
             });
         }
 
+        // Return user object as a JSON response
         res.json(user);
     } catch (error) {
+        // Log and return an error response if an error occurs
         console.error('Error fetching user:', error);
         res.status(500).json({
             error: 'Internal server error'
@@ -55,9 +73,10 @@ exports.getUserById = async (req, res) => {
     }
 };
 
-
+// Add user
 exports.addUser = async (req, res) => {
     try {
+        // Destructure user data from request body
         const {
             firstName,
             lastName,
@@ -75,6 +94,8 @@ exports.addUser = async (req, res) => {
                 phone
             }]
         });
+
+        // If user already exists, return an error response
         if (foundUser) {
             let errorMessage = foundUser.email === email ? "Email already exists" : "Phone already exists";
             return res.status(400).json({
@@ -106,6 +127,7 @@ exports.addUser = async (req, res) => {
             message: 'User added successfully'
         });
     } catch (error) {
+        // Log and return an error response if an error occurs
         console.error(error);
         res.status(500).json({
             success: false,
@@ -127,7 +149,6 @@ exports.editUser = async (req, res) => {
             role
         } = req.body;
 
-        // Find the user by ID
         const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({
@@ -136,14 +157,12 @@ exports.editUser = async (req, res) => {
             });
         }
 
-        // Hash the password if it is provided
         let hashedPassword;
         if (password) {
             const saltRounds = 10;
             hashedPassword = await bcrypt.hash(password, saltRounds);
         }
 
-        // Update the user with the new values
         user.firstName = firstName || user.firstName;
         user.lastName = lastName || user.lastName;
         user.email = email || user.email;
@@ -151,10 +170,8 @@ exports.editUser = async (req, res) => {
         user.password = hashedPassword || user.password;
         user.role = role || user.role;
 
-        // Save the updated user to the database
         await user.save();
 
-        // Return a success response
         res.json({
             success: true,
             message: 'User updated successfully'
@@ -170,6 +187,7 @@ exports.editUser = async (req, res) => {
 
 
 
+// delete a user from the database
 exports.deleteUser = async (req, res) => {
     try {
         // Extract user id from request body

@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const response = await fetch(userId ? `/auth/editUser` : '/auth/addUser', {
-                method: 'POST',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
