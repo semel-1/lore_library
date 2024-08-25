@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption")
 
 mongoose.connect("mongodb://localhost:27017/Lore")
   .then(() => console.log("Successfully connected to MongoDB database"))
@@ -36,6 +37,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+
+
 // Pre middleware for removing comments and ratings associated with the user
 userSchema.pre('remove', async function (next) {
   try {
@@ -53,6 +56,12 @@ userSchema.pre('remove', async function (next) {
   } catch (error) {
     next(error);
   }
+});
+
+
+userSchema.plugin(encrypt, {
+  secret: process.env.DB_SECRET,
+  encryptedFields: ["password"]
 });
 
 const User = mongoose.model("User", userSchema);
