@@ -59,11 +59,6 @@ userSchema.pre('remove', async function (next) {
 });
 
 
-userSchema.plugin(encrypt, {
-  secret: process.env.DB_SECRET,
-  encryptedFields: ["password"]
-});
-
 const User = mongoose.model("User", userSchema);
 
 const bookSchema = new mongoose.Schema({
