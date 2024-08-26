@@ -678,6 +678,8 @@ h2 {
   .first {
     display: grid;
     grid-template-columns: 1fr;
+    margin: 0;
+    margin-top: 80px;
   }
 
   .left {
@@ -686,20 +688,46 @@ h2 {
     justify-content: center;
   }
 
-  .book-info {
-    margin-bottom: 100px;
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
   }
+
+  .book-info {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+
+  .book-info div {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .book-info div p {
+    text-align: center;
+    margin-left: 0;
+  }
+
 
   .buttons {
     display: flex;
-    /* flex-direction: row; */
+    margin-top: 20px;
     justify-content: center;
     margin-left: 10%;
   }
 
   .buttons .btn {
-    /* margin: 0 5%; */
     width: 200px;
+  }
+
+  .rating {
+    margin-top: 30px;
   }
 }
 
@@ -708,33 +736,69 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    margin-top: 80px;
+    width: 100%;
   }
 
   .left {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: center;
   }
 
-  .book-cover {
-    margin: 0;
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  .book-cover .add {
+    width: 100%;
   }
 
   .right {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+
+  .container {
+    position: relative;
+    width: 280px;
+    height: 400px;
   }
 
   .book-info {
-    margin-left: 30%;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
   }
 
+
+
+  .book-info div {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .book-info div p {
+    text-align: center;
+    margin-left: 0;
+  }
+
+
   .buttons {
-    flex-direction: row;
-    gap: 5%;
+    flex-direction: column;
+    margin: 0;
+    margin-top: 20px;
+  }
+
+
+  .buttons .btn {
+    width: 200px;
+  }
+
+  .rating {
+    margin-top: 30px;
   }
 
   .comments .btn-comment {
